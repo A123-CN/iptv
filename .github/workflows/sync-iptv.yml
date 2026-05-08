@@ -9,19 +9,20 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      - name: Download latest IPTV source
+      - name: Download IPTV
         run: |
-          curl -L "http://192168125.ddnsto.com:5000/000.txt" -o 000.txt
           curl -L "http://192168125.ddnsto.com:5000/000.m3u" -o 000.m3u
+          curl -L "http://192168125.ddnsto.com:5000/000.txt" -o 000.txt
 
-      - name: Commit and push changes
+      - name: Commit and Push
         run: |
-          git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add 000.txt
-          git add 000.m3u
-          git commit -m "Auto sync IPTV source at $(date)" || echo "No changes to commit"
+          git config --local user.email "action@github.com"
+          git add 000.txt 000.m3u
+          git commit -m "Update" || true
           git push
