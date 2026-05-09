@@ -1,2 +1,0 @@
-https://ghproxy.com/https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/iqiyi.js
-https://ghproxy.com/https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/360.js
