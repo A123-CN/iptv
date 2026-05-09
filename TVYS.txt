@@ -1,14 +1,2 @@
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/Film--爱奇艺-.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/Film-%E5%85%89%E9%80%9F%E8%B5%84%E6%BA%90.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/Film-%E9%87%91%E9%B9%B0%E7%82%B9%E6%92%AD.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/Film-%E7%B4%A2%E5%B0%BC%E8%B5%84%E6%BA%90.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo--%E8%80%81%E8%89%B2%E9%80%BC-.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo--%E9%BB%84AVZY.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%E7%95%AA%E5%8F%B7%E8%B5%84%E6%BA%90.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%E9%A6%99%E8%95%89%E8%B5%84%E6%BA%90.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%E9%BA%BB%E8%B1%86%E8%A7%86%E9%A2%91.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%E9%BB%84%E8%89%B2%E4%BB%93%E5%BA%93.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%E9%BB%84%E8%89%B2%E4%BB%93%E5%BA%93.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%E7%B2%BE%E5%93%81%E8%B5%84%E6%BA%90.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/Film-%E8%B1%AA%E5%8D%8E%E8%B5%84%E6%BA%90.js
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/xo-%20CK-%E8%B5%84%E6%BA%90.js
+https://ghproxy.com/https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/iqiyi.js
+https://ghproxy.com/https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/omnibox_js/360.js
