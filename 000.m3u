@@ -43,6 +43,10 @@ rtsp://111.48.34.138:1554/170000004112/HBGD8884193178146078726126298415
 rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000194
 #EXTINF:-1 group-title="卫视频道" tvg-name="湖北卫视" tvg-logo="https://livecdn.zbds.org/logo/湖北卫视.png" epg-url="https://epg.zbds.top",湖北卫视
 rtsp://111.48.34.138:1554/170000004112/HBGD9934983436000788486629361083
+#EXTINF:-1 group-title="卫视频道" tvg-name="凤凰中文" tvg-logo="https://livecdn.zbds.org/logo/凤凰中文.png" epg-url="https://epg.zbds.top",凤凰中文
+rtsp://111.48.34.138:1554/170000004112/HBGD1097583753909997568843788306
+#EXTINF:-1 group-title="卫视频道" tvg-name="凤凰资讯" tvg-logo="https://livecdn.zbds.org/logo/凤凰资讯.png" epg-url="https://epg.zbds.top",凤凰资讯
+rtsp://111.48.34.138:1554/170000004112/HBGD1097583896160083968342677179
 #EXTINF:-1 group-title="卫视频道" tvg-name="湖南卫视" tvg-logo="https://livecdn.zbds.org/logo/湖南卫视.png" epg-url="https://epg.zbds.top",湖南卫视
 rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000174
 #EXTINF:-1 group-title="卫视频道" tvg-name="北京卫视" tvg-logo="https://livecdn.zbds.org/logo/北京卫视.png" epg-url="https://epg.zbds.top",北京卫视
@@ -75,6 +79,8 @@ rtsp://111.48.34.138:1554/170000004112/00000001000000050000000000000589
 rtsp://111.48.34.138:1554/170000004112/HBGD8213740706910740489902289856
 #EXTINF:-1 group-title="卫视频道" tvg-name="山东卫视" tvg-logo="https://livecdn.zbds.org/logo/山东卫视.png" epg-url="https://epg.zbds.top",山东卫视
 rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000324
+#EXTINF:-1 group-title="卫视频道" tvg-name="山东教育" tvg-logo="https://livecdn.zbds.org/logo/山东教育.png" epg-url="https://epg.zbds.top",山东教育
+rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000553
 #EXTINF:-1 group-title="卫视频道" tvg-name="山西卫视" tvg-logo="https://livecdn.zbds.org/logo/山西卫视.png" epg-url="https://epg.zbds.top",山西卫视
 rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000077
 #EXTINF:-1 group-title="卫视频道" tvg-name="陕西卫视" tvg-logo="https://livecdn.zbds.org/logo/陕西卫视.png" epg-url="https://epg.zbds.top",陕西卫视
@@ -165,8 +171,6 @@ rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000529
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000468
 #EXTINF:-1 group-title="湖北频道" tvg-name="秭归融媒" tvg-logo="https://livecdn.zbds.org/logo/秭归融媒.png" epg-url="https://epg.zbds.top",秭归融媒
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000473
-#EXTINF:-1 group-title="湖北频道" tvg-name="秭归融媒" tvg-logo="https://livecdn.zbds.org/logo/秭归融媒.png" epg-url="https://epg.zbds.top",秭归融媒
-rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000473
 #EXTINF:-1 group-title="湖北频道" tvg-name="随州综合" tvg-logo="https://livecdn.zbds.org/logo/随州综合.png" epg-url="https://epg.zbds.top",随州综合
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000218
 #EXTINF:-1 group-title="湖北频道" tvg-name="随州农村" tvg-logo="https://livecdn.zbds.org/logo/随州农村.png" epg-url="https://epg.zbds.top",随州农村
@@ -207,6 +211,24 @@ rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000522
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000523
 #EXTINF:-1 group-title="影视频道" tvg-name="CHC影迷电影" tvg-logo="https://livecdn.zbds.org/logo/CHC影迷电影.png" epg-url="https://epg.zbds.top",CHC影迷电影
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000539
+#EXTINF:-1 group-title="4K频道" tvg-name="湖南卫视4K" tvg-logo="https://livecdn.zbds.org/logo/湖南卫视4K.png" epg-url="https://epg.zbds.top",湖南卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1161024675055546368175052165
+#EXTINF:-1 group-title="4K频道" tvg-name="浙江卫视4K" tvg-logo="https://livecdn.zbds.org/logo/浙江卫视4K.png" epg-url="https://epg.zbds.top",浙江卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1161024372223684608826694195
+#EXTINF:-1 group-title="4K频道" tvg-name="江苏卫视4K" tvg-logo="https://livecdn.zbds.org/logo/江苏卫视4K.png" epg-url="https://epg.zbds.top",江苏卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1161024061978324992408004965
+#EXTINF:-1 group-title="4K频道" tvg-name="东方卫视4K" tvg-logo="https://livecdn.zbds.org/logo/东方卫视4K.png" epg-url="https://epg.zbds.top",东方卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1161023780712493056528252825
+#EXTINF:-1 group-title="4K频道" tvg-name="深圳卫视4K" tvg-logo="https://livecdn.zbds.org/logo/深圳卫视4K.png" epg-url="https://epg.zbds.top",深圳卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1134934009353457664504975325
+#EXTINF:-1 group-title="4K频道" tvg-name="北京卫视4K" tvg-logo="https://livecdn.zbds.org/logo/北京卫视4K.png" epg-url="https://epg.zbds.top",北京卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1099046553413197824376375621
+#EXTINF:-1 group-title="4K频道" tvg-name="广东卫视4K" tvg-logo="https://livecdn.zbds.org/logo/广东卫视4K.png" epg-url="https://epg.zbds.top",广东卫视4K
+http://111.48.34.138/000000001000PLTV/88888888/224/3221230606/1.m3u8
+#EXTINF:-1 group-title="4K频道" tvg-name="四川卫视4K" tvg-logo="https://livecdn.zbds.org/logo/四川卫视4K.png" epg-url="https://epg.zbds.top",四川卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1161024782644719616300513999
+#EXTINF:-1 group-title="4K频道" tvg-name="山东卫视4K" tvg-logo="https://livecdn.zbds.org/logo/山东卫视4K.png" epg-url="https://epg.zbds.top",山东卫视4K
+rtsp://111.48.34.138:1554/170000004112/HBGD1161024518465400832464405079
 #EXTINF:-1 group-title="少儿频道" tvg-name="新动漫" tvg-logo="https://livecdn.zbds.org/logo/新动漫.png" epg-url="https://epg.zbds.top",新动漫
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000500
 #EXTINF:-1 group-title="少儿频道" tvg-name="卡酷少儿" tvg-logo="https://livecdn.zbds.org/logo/卡酷少儿.png" epg-url="https://epg.zbds.top",卡酷少儿
@@ -215,6 +237,12 @@ rtsp://111.48.34.138:1554/170000004112/HBGD7833080911839600643336215800
 rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000613
 #EXTINF:-1 group-title="少儿频道" tvg-name="动漫秀场" tvg-logo="https://livecdn.zbds.org/logo/动漫秀场.png" epg-url="https://epg.zbds.top",动漫秀场
 rtsp://111.48.34.138:1554/170000004112/HBGD9805143433502638082196954568
+#EXTINF:-1 group-title="数字频道" tvg-name="CETV1" tvg-logo="https://livecdn.zbds.org/logo/CETV1.png" epg-url="https://epg.zbds.top",CETV1
+rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000342
+#EXTINF:-1 group-title="数字频道" tvg-name="CETV2" tvg-logo="https://livecdn.zbds.org/logo/CETV2.png" epg-url="https://epg.zbds.top",CETV2
+rtsp://111.48.34.138:1554/170000004112/00005000000000000000000000000251
+#EXTINF:-1 group-title="数字频道" tvg-name="CETV4" tvg-logo="https://livecdn.zbds.org/logo/CETV4.png" epg-url="https://epg.zbds.top",CETV4
+rtsp://111.48.34.138:1554/170000004112/00005000000000000000000000000252
 #EXTINF:-1 group-title="数字频道" tvg-name="金色学堂" tvg-logo="https://livecdn.zbds.org/logo/金色学堂.png" epg-url="https://epg.zbds.top",金色学堂
 rtsp://111.48.34.138:1554/170000004112/HBGD9805145630420992009556577523
 #EXTINF:-1 group-title="数字频道" tvg-name="都市剧场" tvg-logo="https://livecdn.zbds.org/logo/都市剧场.png" epg-url="https://epg.zbds.top",都市剧场
