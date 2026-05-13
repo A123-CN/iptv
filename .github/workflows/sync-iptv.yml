@@ -19,7 +19,8 @@ jobs:
           curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" -o 000.txt
           curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" -o 000.txt
           curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" -o 000.txt
-
+          curl -L "http://192168125.ddnsto.com:5000/tv.txt" -o tv.txt
+          
       - name: Commit and Push
         run: |
           git config --local user.name "GitHub Action"
