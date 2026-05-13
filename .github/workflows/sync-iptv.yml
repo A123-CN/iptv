@@ -16,10 +16,9 @@ jobs:
 
       - name: Download IPTV
         run: |
-          curl -L "http://192168125.ddnsto.com:5000/000.m3u" -o 000.m3u
-          curl -L "http://192168125.ddnsto.com:5000/000.txt" -o 000.txt
-          curl -L "http://192168125.ddnsto.com:5000/001.txt" -o 001.txt
-          curl -L "http://192168125.ddnsto.com:5000/001.m3u" -o 001.m3u
+          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" -o 000.txt
+          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" -o 000.txt
+          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" -o 000.txt
 
       - name: Commit and Push
         run: |
