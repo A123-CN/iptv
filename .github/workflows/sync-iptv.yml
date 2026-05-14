@@ -14,17 +14,17 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Download IPTV
-        run: |
-          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" -o 000.txt
-          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" -o 000.txt
-          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" -o 000.txt
-          curl -L "http://192168125.ddnsto.com:5000/tv.txt" -o tv.txt
+      - name: Download and Merge IPTV
+  run: |
+    curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" >> iptv.txt
+    curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" >> iptv.txt
+    curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" >> iptv.txt
+    curl -L "http://192168125.ddnsto.com:5000/tv.txt" >> tv.txt
           
       - name: Commit and Push
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          git add 000.txt 000.m3u
+          git add iptv.txt tv.txt
           git commit -m "Update" || true
           git push
