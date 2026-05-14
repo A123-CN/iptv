@@ -16,17 +16,29 @@ jobs:
 
       - name: Download and Merge IPTV
         run: |
-          # 清空旧文件，避免重复追加
           > iptv.txt
           curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" >> iptv.txt
           curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" >> iptv.txt
           curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" >> iptv.txt
-          
-      - name: Commit and Push
+
+      - name: Commit and Push IPTV
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
           git add iptv.txt
           git commit -m "Update IPTV sources" || true
+          git pull --rebase --strategy-option ours
+          git push
+
+      - name: Download TV
+        run: |
+          curl -L "http://192168125.ddnsto.com:5000/tv.txt" -o tv.txt
+
+      - name: Commit and Push TV
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add tv.txt
+          git commit -m "Update TV source" || true
           git pull --rebase --strategy-option ours
           git push
