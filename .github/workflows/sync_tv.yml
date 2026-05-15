@@ -1,23 +1,82 @@
-name: Basic Sync Test
+name: Smart Sync TV Source
+
 on:
+  schedule:
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
-  sync:
+  check-delay-and-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Download file
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check, Wait and Sync
         run: |
-          curl -sL "http://192168125.ddnsto.com:5000/tv.txt" -o tv.txt
-          echo "文件下载完成，内容行数:"
-          wc -l tv.txt
+          # 定义路径和URL
+          SOURCE_URL="http://192168125.ddnsto.com:5000/tv.txt"
+          TEMP_FILE="/tmp/latest_tv.txt"
+          STAGING_FILE=".staging_tv.txt"
+          CHANGE_FLAG=".pending_change"
           
-      - name: Commit and push
-        run: |
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
-          git add tv.txt
-          git commit -m "Test sync" || true
-          git push
+          echo "=== 1. 下载源文件 ==="
+          curl -sL --connect-timeout 10 "$SOURCE_URL" -o "$TEMP_FILE"
+          if [ ! -s "$TEMP_FILE" ]; then
+            echo "错误：下载失败或文件为空。"
+            exit 1
+          fi
+          echo "下载成功，文件大小: $(wc -c < "$TEMP_FILE") 字节"
+
+          # 首次运行处理
+          if [ ! -f tv.txt ]; then
+            echo "=== 2. 本地文件不存在，首次创建 ==="
+            cp "$TEMP_FILE" tv.txt
+            COMMIT_AND_PUSH=true
+          else
+            echo "=== 2. 比对文件差异 ==="
+            if diff -q tv.txt "$TEMP_FILE" > /dev/null; then
+              echo "文件内容无变化。检查是否有待处理的延迟更新..."
+              if [ -f "$CHANGE_FLAG" ] && [ -f "$STAGING_FILE" ]; then
+                CHANGE_TIME=$(cat "$CHANGE_FLAG")
+                CURRENT_TIME=$(date +%s)
+                DIFF=$((CURRENT_TIME - CHANGE_TIME))
+                echo "已等待 ${DIFF} 秒。"
+                if [ $DIFF -ge 600 ]; then
+                  echo "=== 3. 等待时间达标，执行更新 ==="
+                  cp "$STAGING_FILE" tv.txt
+                  COMMIT_AND_PUSH=true
+                  rm -f "$CHANGE_FLAG" "$STAGING_FILE"
+                else
+                  echo "还需等待 $((600 - DIFF)) 秒，本次跳过。"
+                fi
+              else
+                echo "无待处理任务，流程结束。"
+              fi
+            else
+              echo "=== 3. 检测到新内容，进入等待期 ==="
+              cp "$TEMP_FILE" "$STAGING_FILE"
+              date +%s > "$CHANGE_FLAG"
+              echo "已暂存新文件，将在下次运行时检查是否可提交（10分钟后）。"
+            fi
+          fi
+
+          # Git 提交
+          if [ "$COMMIT_AND_PUSH" = true ]; then
+            echo "=== 4. 提交更改 ==="
+            git config --local user.name "GitHub Action"
+            git config --local user.email "action@github.com"
+            git add tv.txt
+            if git diff --cached --quiet; then
+              echo "无实际变更需要提交。"
+            else
+              git commit -m "Update TV source at $(date)"
+              git pull --rebase --strategy-option ours
+              git push
+              echo "提交成功！"
+            fi
+          else
+            echo "=== 4. 本次无需提交 ==="
+          fi
+          
+          echo "=== 任务结束 ==="
