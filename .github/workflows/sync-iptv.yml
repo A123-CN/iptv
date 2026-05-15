@@ -29,16 +29,3 @@ jobs:
           git commit -m "Update IPTV sources" || true
           git pull --rebase --strategy-option ours
           git push
-
-      - name: Download TV
-        run: |
-          curl -L "http://192168125.ddnsto.com:5000/tv.txt" -o tv.txt
-
-      - name: Commit and Push TV
-        run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
-          git add tv.txt
-          git commit -m "Update TV source" || true
-          git pull --rebase --strategy-option ours
-          git push
