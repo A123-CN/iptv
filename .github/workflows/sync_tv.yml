@@ -27,72 +27,72 @@ jobs:
             exit 1
           fi
           echo "下载成功，文件大小: $(wc -c < "$TEMP_FILE") 字节"
-          echo "下载的文件前3行预览:"
-          head -3 "$TEMP_FILE"
+
+          # 判断是否为手动触发
+          IS_MANUAL=false
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            IS_MANUAL=true
+            echo "检测到手动触发，将跳过等待期，立即同步。"
+          fi
 
           # 首次运行处理
           if [ ! -f tv.txt ]; then
             echo "=== 2. 本地文件不存在，首次创建 ==="
             cp "$TEMP_FILE" tv.txt
-            echo "新文件内容行数: $(wc -l < tv.txt)"
             COMMIT_AND_PUSH=true
           else
-            echo "=== 2. 本地文件已存在，大小: $(wc -c < tv.txt) 字节 ==="
-            echo "比对文件差异..."
+            echo "=== 2. 比对文件差异 ==="
             if diff -q tv.txt "$TEMP_FILE" > /dev/null; then
-              echo "文件内容无变化。检查是否有待处理的延迟更新..."
-              if [ -f "$CHANGE_FLAG" ] && [ -f "$STAGING_FILE" ]; then
-                CHANGE_TIME=$(cat "$CHANGE_FLAG")
-                CURRENT_TIME=$(date +%s)
-                DIFF=$((CURRENT_TIME - CHANGE_TIME))
-                echo "已等待 ${DIFF} 秒。"
-                if [ $DIFF -ge 600 ]; then
-                  echo "=== 3. 等待时间达标，执行更新 ==="
-                  cp "$STAGING_FILE" tv.txt
-                  echo "更新后文件大小: $(wc -c < tv.txt) 字节"
-                  COMMIT_AND_PUSH=true
-                  rm -f "$CHANGE_FLAG" "$STAGING_FILE"
-                else
-                  echo "还需等待 $((600 - DIFF)) 秒，本次跳过。"
-                fi
+              echo "文件内容无变化。"
+              # 手动触发时也强制提交（覆盖）
+              if [ "$IS_MANUAL" = true ]; then
+                echo "手动触发模式：强制更新文件。"
+                cp "$TEMP_FILE" tv.txt
+                COMMIT_AND_PUSH=true
               else
-                echo "无待处理任务，流程结束。"
+                echo "检查是否有待处理的延迟更新..."
+                if [ -f "$CHANGE_FLAG" ] && [ -f "$STAGING_FILE" ]; then
+                  CHANGE_TIME=$(cat "$CHANGE_FLAG")
+                  CURRENT_TIME=$(date +%s)
+                  DIFF=$((CURRENT_TIME - CHANGE_TIME))
+                  echo "已等待 ${DIFF} 秒。"
+                  if [ $DIFF -ge 600 ]; then
+                    echo "=== 3. 等待时间达标，执行更新 ==="
+                    cp "$STAGING_FILE" tv.txt
+                    COMMIT_AND_PUSH=true
+                    rm -f "$CHANGE_FLAG" "$STAGING_FILE"
+                  else
+                    echo "还需等待 $((600 - DIFF)) 秒，本次跳过。"
+                  fi
+                else
+                  echo "无待处理任务，流程结束。"
+                fi
               fi
             else
-              echo "=== 3. 检测到新内容，进入等待期 ==="
-              cp "$TEMP_FILE" "$STAGING_FILE"
-              date +%s > "$CHANGE_FLAG"
-              echo "新内容已暂存，大小: $(wc -c < "$STAGING_FILE") 字节"
-              echo "将在下次运行时检查是否可提交（10分钟后）。"
+              echo "=== 3. 检测到新内容 ==="
+              if [ "$IS_MANUAL" = true ]; then
+                echo "手动触发模式：立即提交。"
+                cp "$TEMP_FILE" tv.txt
+                COMMIT_AND_PUSH=true
+              else
+                echo "进入等待期，暂存新文件。"
+                cp "$TEMP_FILE" "$STAGING_FILE"
+                date +%s > "$CHANGE_FLAG"
+                echo "将在下次运行时检查是否可提交（10分钟后）。"
+              fi
             fi
           fi
 
-          # 诊断 git 状态
-          echo "=== Git 状态诊断 ==="
-          echo "当前分支: $(git branch --show-current)"
-          echo "工作区状态:"
-          git status
-          echo "tv.txt 是否被跟踪: $(git ls-files tv.txt | wc -l)"
-
           # Git 提交
           if [ "$COMMIT_AND_PUSH" = true ]; then
-            echo "=== 4. 准备提交更改 ==="
+            echo "=== 4. 提交更改 ==="
             git config --local user.name "GitHub Action"
             git config --local user.email "action@github.com"
             git add tv.txt
-            echo "暂存区状态:"
-            git diff --cached --stat
-            echo "是否为空提交:"
-            if git diff --cached --quiet; then
-              echo "是的，暂存区没有变更。"
-              echo "这可能是因为 tv.txt 和仓库中的版本完全一致。"
-            else
-              echo "否，有变更需要提交。"
-              git commit -m "Update TV source at $(date)"
-              git pull --rebase --strategy-option ours
-              git push
-              echo "提交成功！"
-            fi
+            git commit -m "Update TV source at $(date)" || echo "提交跳过（内容可能相同）"
+            git pull --rebase --strategy-option ours
+            git push
+            echo "提交成功！"
           else
             echo "=== 4. 本次无需提交 ==="
           fi
