@@ -56,13 +56,13 @@ jobs:
                   CURRENT_TIME=$(date +%s)
                   DIFF=$((CURRENT_TIME - CHANGE_TIME))
                   echo "已等待 ${DIFF} 秒。"
-                  if [ $DIFF -ge 600 ]; then
+                  if [ $DIFF -ge 120 ]; then
                     echo "=== 3. 等待时间达标，执行更新 ==="
                     cp "$STAGING_FILE" tv.txt
                     COMMIT_AND_PUSH=true
                     rm -f "$CHANGE_FLAG" "$STAGING_FILE"
                   else
-                    echo "还需等待 $((600 - DIFF)) 秒，本次跳过。"
+                    echo "还需等待 $((120 - DIFF)) 秒，本次跳过。"
                   fi
                 else
                   echo "无待处理任务，流程结束。"
@@ -78,7 +78,7 @@ jobs:
                 echo "进入等待期，暂存新文件。"
                 cp "$TEMP_FILE" "$STAGING_FILE"
                 date +%s > "$CHANGE_FLAG"
-                echo "将在下次运行时检查是否可提交（10分钟后）。"
+                echo "将在下次运行时检查是否可提交（2分钟后）。"
               fi
             fi
           fi
