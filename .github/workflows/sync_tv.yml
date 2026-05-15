@@ -1,9 +1,23 @@
-name: Test Workflow
+name: Basic Sync Test
 on:
   workflow_dispatch:
+
 jobs:
-  test:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        run: echo "Workflow is running!"
+      - uses: actions/checkout@v4
+      
+      - name: Download file
+        run: |
+          curl -sL "http://192168125.ddnsto.com:5000/tv.txt" -o tv.txt
+          echo "文件下载完成，内容行数:"
+          wc -l tv.txt
+          
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add tv.txt
+          git commit -m "Test sync" || true
+          git push
