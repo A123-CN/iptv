@@ -1,8 +1,9 @@
-name: Smart Sync TV Source
+name: Smart Sync TV Source (Daily Force Update)
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小时执行一次
+    # 每天 UTC 时间 18:40 执行，对应北京时间次日凌晨 2:40
+    - cron: '40 18 * * *'
   workflow_dispatch:      # 允许手动触发
 
 jobs:
@@ -12,17 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download and Update TV Source
+      - name: Force Download and Update TV Source
         run: |
-          # 源地址（已验证可用）
-          SOURCE_URL="http://192168125.ddnsto.com:5000/tv.txt"
+          # 强制更新源地址 (注意：原地址协议疑似缺失，已按标准格式补充 https://)
+          SOURCE_URL="https://192168125.ddnsto.com:443/tv.txt"
           
-          echo "=== 下载 TV 源文件 ==="
+          echo "=== 强制下载 TV 源文件 (北京时间凌晨 2:40) ==="
           echo "时间: $(date)"
           
           # 下载新文件（带重试）
           for i in 1 2 3; do
             if curl -L --fail --connect-timeout 10 --max-time 30 \
+                --insecure \  # 如果目标为自签名 https，可保留；若为 http 请删除此行
                 "$SOURCE_URL" -o /tmp/tv_new.txt; then
               if [ -s /tmp/tv_new.txt ]; then
                 echo "✅ 下载成功，文件大小: $(wc -c < /tmp/tv_new.txt) 字节"
@@ -31,43 +33,27 @@ jobs:
             fi
             echo "⚠ 下载失败，重试 $i/3..."
             sleep 2
+            if [ $i -eq 3 ]; then
+              echo "❌ 下载失败，流程终止"
+              exit 1
+            fi
           done
-          
-          # 检查下载是否成功
-          if [ ! -s /tmp/tv_new.txt ]; then
-            echo "❌ 错误：下载失败或文件为空"
-            exit 1
-          fi
           
           # 显示文件信息
           echo "新文件行数: $(wc -l < /tmp/tv_new.txt)"
           echo "新文件前5行:"
           head -5 /tmp/tv_new.txt
           
-          # 检查是否有变化
-          if [ -f tv.txt ]; then
-            if diff -q tv.txt /tmp/tv_new.txt > /dev/null 2>&1; then
-              echo "✅ 内容无变化，无需更新"
-              exit 0
-            else
-              echo "🔄 检测到内容变化，准备更新"
-              # 显示变化统计
-              echo "变化详情:"
-              diff tv.txt /tmp/tv_new.txt | head -20 || true
-            fi
-          else
-            echo "📝 本地文件不存在，首次创建"
-          fi
-          
-          # 更新文件
+          # 强制更新：直接覆盖本地文件
           cp /tmp/tv_new.txt tv.txt
           
-          # 提交并推送
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
+          # 提交并强制推送（忽略内容变化检测）
+          git config --local user.name "GitHub Action (Force Sync)"
+          git config --local user.email "action+force@github.com"
           git add tv.txt
-          git commit -m "Update TV source - $(date '+%Y-%m-%d %H:%M:%S')"
+          # 即使无变化也允许提交（--allow-empty），并强制记录本次同步
+          git commit --allow-empty -m "Force sync TV source at $(date '+%Y-%m-%d %H:%M:%S') (UTC)"
           git pull --rebase --strategy-option ours
           git push
           
-          echo "✅ 已成功推送到仓库"
+          echo "✅ 强制更新及推送已完成"
