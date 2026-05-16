@@ -16,16 +16,62 @@ jobs:
 
       - name: Download and Merge IPTV
         run: |
-          > iptv.txt
-          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" >> iptv.txt
-          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" >> iptv.txt
-          curl -L "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" >> iptv.txt
+          echo "=== 开始下载 IPTV 源 ==="
+          echo "时间: $(date)"
+          
+          # 备份原文件
+          if [ -f iptv.txt ]; then
+            cp iptv.txt iptv.txt.bak
+            echo "原文件大小: $(wc -l < iptv.txt) 行"
+          fi
+          
+          # 下载并合并（使用临时文件）
+          > iptv.txt.tmp
+          
+          echo "下载源1..."
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" \
+            -o /tmp/s1.txt && cat /tmp/s1.txt >> iptv.txt.tmp
+          
+          echo "下载源2..."
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" \
+            -o /tmp/s2.txt && cat /tmp/s2.txt >> iptv.txt.tmp
+          
+          echo "下载源3..."
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" \
+            -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
+          
+          # 检查下载是否成功
+          NEW_LINES=$(wc -l < iptv.txt.tmp)
+          echo "下载完成，总行数: $NEW_LINES"
+          
+          if [ "$NEW_LINES" -lt 100 ]; then
+            echo "❌ 错误: 下载内容太少 ($NEW_LINES 行)，可能失败"
+            exit 1
+          fi
+          
+          # 替换原文件
+          mv iptv.txt.tmp iptv.txt
+          echo "✅ 下载成功"
 
-      - name: Commit and Push IPTV
+      - name: Commit and Push
         run: |
+          # 检查是否有变化
+          if [ -f iptv.txt.bak ] && diff -q iptv.txt iptv.txt.bak > /dev/null; then
+            echo "✅ 内容无变化，跳过提交"
+            exit 0
+          fi
+          
+          echo "🔄 检测到变化，准备提交"
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
           git add iptv.txt
-          git commit -m "Update IPTV sources" || true
+          git commit -m "Update IPTV sources - $(date '+%Y-%m-%d %H:%M:%S')"
+          
+          # 拉取最新代码并推送
           git pull --rebase --strategy-option ours
           git push
+          
+          echo "✅ 已成功推送到仓库"
