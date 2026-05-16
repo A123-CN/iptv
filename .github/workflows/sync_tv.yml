@@ -2,99 +2,72 @@ name: Smart Sync TV Source
 
 on:
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
+    - cron: '0 * * * *'  # 每小时执行一次
+  workflow_dispatch:      # 允许手动触发
 
 jobs:
-  check-delay-and-sync:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check, Wait and Sync
+      - name: Download and Update TV Source
         run: |
-          # 定义路径和URL
+          # 源地址（已验证可用）
           SOURCE_URL="http://192168125.ddnsto.com:5000/tv.txt"
-          TEMP_FILE="/tmp/latest_tv.txt"
-          STAGING_FILE=".staging_tv.txt"
-          CHANGE_FLAG=".pending_change"
           
-          echo "=== 1. 下载源文件 ==="
-          curl -sL --connect-timeout 10 "$SOURCE_URL" -o "$TEMP_FILE"
-          if [ ! -s "$TEMP_FILE" ]; then
-            echo "错误：下载失败或文件为空。"
-            exit 1
-          fi
-          echo "下载成功，文件大小: $(wc -c < "$TEMP_FILE") 字节"
-
-          # 判断是否为手动触发
-          IS_MANUAL=false
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-            IS_MANUAL=true
-            echo "检测到手动触发，将跳过等待期，立即同步。"
-          fi
-
-          # 首次运行处理
-          if [ ! -f tv.txt ]; then
-            echo "=== 2. 本地文件不存在，首次创建 ==="
-            cp "$TEMP_FILE" tv.txt
-            COMMIT_AND_PUSH=true
-          else
-            echo "=== 2. 比对文件差异 ==="
-            if diff -q tv.txt "$TEMP_FILE" > /dev/null; then
-              echo "文件内容无变化。"
-              # 手动触发时也强制提交（覆盖）
-              if [ "$IS_MANUAL" = true ]; then
-                echo "手动触发模式：强制更新文件。"
-                cp "$TEMP_FILE" tv.txt
-                COMMIT_AND_PUSH=true
-              else
-                echo "检查是否有待处理的延迟更新..."
-                if [ -f "$CHANGE_FLAG" ] && [ -f "$STAGING_FILE" ]; then
-                  CHANGE_TIME=$(cat "$CHANGE_FLAG")
-                  CURRENT_TIME=$(date +%s)
-                  DIFF=$((CURRENT_TIME - CHANGE_TIME))
-                  echo "已等待 ${DIFF} 秒。"
-                  if [ $DIFF -ge 120 ]; then
-                    echo "=== 3. 等待时间达标，执行更新 ==="
-                    cp "$STAGING_FILE" tv.txt
-                    COMMIT_AND_PUSH=true
-                    rm -f "$CHANGE_FLAG" "$STAGING_FILE"
-                  else
-                    echo "还需等待 $((120 - DIFF)) 秒，本次跳过。"
-                  fi
-                else
-                  echo "无待处理任务，流程结束。"
-                fi
-              fi
-            else
-              echo "=== 3. 检测到新内容 ==="
-              if [ "$IS_MANUAL" = true ]; then
-                echo "手动触发模式：立即提交。"
-                cp "$TEMP_FILE" tv.txt
-                COMMIT_AND_PUSH=true
-              else
-                echo "进入等待期，暂存新文件。"
-                cp "$TEMP_FILE" "$STAGING_FILE"
-                date +%s > "$CHANGE_FLAG"
-                echo "将在下次运行时检查是否可提交（2分钟后）。"
+          echo "=== 下载 TV 源文件 ==="
+          echo "时间: $(date)"
+          
+          # 下载新文件（带重试）
+          for i in 1 2 3; do
+            if curl -L --fail --connect-timeout 10 --max-time 30 \
+                "$SOURCE_URL" -o /tmp/tv_new.txt; then
+              if [ -s /tmp/tv_new.txt ]; then
+                echo "✅ 下载成功，文件大小: $(wc -c < /tmp/tv_new.txt) 字节"
+                break
               fi
             fi
-          fi
-
-          # Git 提交
-          if [ "$COMMIT_AND_PUSH" = true ]; then
-            echo "=== 4. 提交更改 ==="
-            git config --local user.name "GitHub Action"
-            git config --local user.email "action@github.com"
-            git add tv.txt
-            git commit -m "Update TV source at $(date)" || echo "提交跳过（内容可能相同）"
-            git pull --rebase --strategy-option ours
-            git push
-            echo "提交成功！"
-          else
-            echo "=== 4. 本次无需提交 ==="
+            echo "⚠ 下载失败，重试 $i/3..."
+            sleep 2
+          done
+          
+          # 检查下载是否成功
+          if [ ! -s /tmp/tv_new.txt ]; then
+            echo "❌ 错误：下载失败或文件为空"
+            exit 1
           fi
           
-          echo "=== 任务结束 ==="
+          # 显示文件信息
+          echo "新文件行数: $(wc -l < /tmp/tv_new.txt)"
+          echo "新文件前5行:"
+          head -5 /tmp/tv_new.txt
+          
+          # 检查是否有变化
+          if [ -f tv.txt ]; then
+            if diff -q tv.txt /tmp/tv_new.txt > /dev/null 2>&1; then
+              echo "✅ 内容无变化，无需更新"
+              exit 0
+            else
+              echo "🔄 检测到内容变化，准备更新"
+              # 显示变化统计
+              echo "变化详情:"
+              diff tv.txt /tmp/tv_new.txt | head -20 || true
+            fi
+          else
+            echo "📝 本地文件不存在，首次创建"
+          fi
+          
+          # 更新文件
+          cp /tmp/tv_new.txt tv.txt
+          
+          # 提交并推送
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add tv.txt
+          git commit -m "Update TV source - $(date '+%Y-%m-%d %H:%M:%S')"
+          git pull --rebase --strategy-option ours
+          git push
+          
+          echo "✅ 已成功推送到仓库"
