@@ -42,6 +42,11 @@ jobs:
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" \
             -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
+
+          echo "下载源4..."
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://19216812550085.ddnsto.com/playlist/txt/113.9.184.210:9003" \
+            -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
           
           # 检查下载是否成功
           NEW_LINES=$(wc -l < iptv.txt.tmp)
