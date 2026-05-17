@@ -45,7 +45,7 @@ jobs:
 
           echo "下载源4..."
           curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://19216812550085.ddnsto.com/playlist/txt/113.9.184.210:9003" \
+            "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.txt" \
             -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
           
           # 检查下载是否成功
