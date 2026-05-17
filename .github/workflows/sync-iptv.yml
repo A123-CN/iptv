@@ -47,6 +47,11 @@ jobs:
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.txt" \
             -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
+
+            echo "下载源5..."
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.txt" \
+            -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
           
           # 检查下载是否成功
           NEW_LINES=$(wc -l < iptv.txt.tmp)
