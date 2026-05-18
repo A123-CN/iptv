@@ -2,7 +2,7 @@ name: Sync IPTV Source
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 4 * * *'  # UTC 04:00 = 北京时间 12:00
   workflow_dispatch:
 
 jobs:
@@ -46,12 +46,12 @@ jobs:
           echo "下载源4..."
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.txt" \
-            -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
+            -o /tmp/s4.txt && cat /tmp/s4.txt >> iptv.txt.tmp
 
-            echo "下载源5..."
+          echo "下载源5..."
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.txt" \
-            -o /tmp/s3.txt && cat /tmp/s3.txt >> iptv.txt.tmp
+            -o /tmp/s5.txt && cat /tmp/s5.txt >> iptv.txt.tmp
           
           # 检查下载是否成功
           NEW_LINES=$(wc -l < iptv.txt.tmp)
