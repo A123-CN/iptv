@@ -1,4 +1,4 @@
-# 更新时间: 2026-05-19 21:15:25
+# 更新时间: 2026-05-19 21:38:20
 # 可用: 444/444
 
 央视频道,#genre#
@@ -325,7 +325,7 @@ TVBPearl,https://mytv.cdn.loc.cc/o12.php?id=mzt
 TVBPlus,http://r.jdshipin.com/Nr5jq
 TVBPlus,https://o11.163189.xyz/stream/tvb/tvbp/
 TVBPlus,http://rihou.cc:555/tv/[Pd]Plus综合
-TVB1,https://6.cdn.loc.cc/163189.php?id=tvb1
+TVB1,http://iptv.4666888.xyz/iptv2A.php?id=25
 TVB1,http://iptv.4666888.xyz/iptv2A.php?id=25
 TVB1,http://iptv.4666888.xyz/iptv2A.php?id=25
 TVBJ1,http://iptv.4666888.xyz/iptv2A.php?id=26
@@ -357,7 +357,7 @@ HOY78,https://cdn.163189.xyz/163189/hoy78
 TENNIS,http://iptv.4666888.xyz/iptv2A.php?id=62
 TENNIS,https://iptv.xmtv.qzz.io/?id=62
 ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
-ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
+ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
 美亚电影,http://iptv.4666888.xyz/iptv2A.php?id=30
 美亚电影,https://iptv.xmtv.qzz.io/?id=30
 华艺中文,http://iptv.4666888.xyz/iptv2A.php?id=37
@@ -394,7 +394,7 @@ ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
 东森电影,http://iptv.4666888.xyz/iptv2A.php?id=48
 东森超视,http://38.64.72.148:80/hls/modn/list/2013/chunklist0.m3u8#rtmp://f13h.mine.nu/sat/tv331
 非凡新闻,http://iptv.4666888.xyz/iptv2A.php?id=44
-非凡新闻,https://iptv.xmtv.qzz.io/?id=44
+非凡新闻,http://iptv.4666888.xyz/iptv2A.php?id=44
 超视,http://38.64.72.148:80/hls/modn/list/2013/chunklist1.m3u8
 中视,https://iptv.852851.xyz/ch/177f5903c7e4ae806ba85f66cb9a47e9/master.m3u8
 中视,https://test.946985.filegear-sg.me/proxy/4352f1616e15127a
