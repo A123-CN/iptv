@@ -1,4 +1,4 @@
-# 更新时间: 2026-05-20 01:16:46
+# 更新时间: 2026-05-20 02:05:03
 # 可用: 431/432
 
 央视频道,#genre#
@@ -316,7 +316,7 @@ TVB1,https://iptv.xmtv.qzz.io/?id=25
 TVBJ1,http://iptv.4666888.xyz/iptv2A.php?id=26
 TVBJ1,https://iptv.xmtv.qzz.io/?id=26
 TVBJ2,http://fm1077.serv00.net/Smart.php?id=j2_twn
-TVB-奖门人,http://iptv.4666888.xyz/iptv2A.php?id=31
+TVB奖门人,http://iptv.4666888.xyz/iptv2A.php?id=31
 TVB奖门人,https://iptv.xmtv.qzz.io/?id=31
 TVB金曲,https://iptv.xmtv.qzz.io/?id=57
 TVB金曲,http://iptv.4666888.xyz/iptv2A.php?id=57
@@ -332,6 +332,7 @@ CHU,http://cdn6.163189.xyz/163189/chu
 CH5,http://cdn6.163189.xyz/163189/ch5
 CH8,http://cdn6.163189.xyz/163189/ch8
 RTHK31,http://cdn.163189.xyz/163189/rthk31
+RTHK31,https://iptv.xmtv.qzz.io/?id=23
 RHK31,http://cdn.163189.xyz/163189/rthk31
 RTHK32,http://cdn.163189.xyz/163189/rthk32
 RTHK33,http://cdn6.163189.xyz/163189/cctv1
