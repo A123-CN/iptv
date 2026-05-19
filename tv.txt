@@ -1,5 +1,5 @@
-# 更新时间: 2026-05-19 22:25:34
-# 可用: 444/444
+# 更新时间: 2026-05-19 22:56:19
+# 可用: 479/444
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -200,7 +200,6 @@ CHC华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
 重温经典,http://8.138.7.223/tv/cwjd.php
 中国电影,http://iptv.4666888.xyz/iptv2A.php?id=61
 中国电影,https://iptv.xmtv.qzz.io/?id=61
-华艺中文,http://iptv.4666888.xyz/iptv2A.php?id=37
 iQIYI,http://iptv.4666888.xyz/iptv2A.php?id=21
 iQIYI,https://iptv.xmtv.qzz.io/?id=21
 风云电影,http://iptv.4666888.xyz/iptv2A.php?id=59
@@ -306,14 +305,22 @@ TVB翡翠台,http://r.jdshipin.com/qrfbg
 TVB翡翠台,http://r.jdshipin.com/qClQf
 TVB翡翠台,http://r.jdshipin.com/n90gt
 TVB翡翠台,http://mytv.cdn.loc.cc/o12.php?id=fct
+TVB翡翠台,http://mytv.cdn.loc.cc/o12.php?id=fct
 TVB翡翠台,https://iptv.xmtv.qzz.io/?id=28
+TVB翡翠剧集,http://iptv.4666888.xyz/iptv2A.php?id=33
 TVB翡翠剧集,http://iptv.4666888.xyz/iptv2A.php?id=33
 TVB翡翠剧集,https://iptv.xmtv.qzz.io/?id=33
 TVB黄金华剧,http://iptv.4666888.xyz/iptv2A.php?id=34
+TVB黄金华剧,http://iptv.4666888.xyz/iptv2A.php?id=34
+TVB黄金华剧,https://iptv.xmtv.qzz.io/?id=34
 TVB黄金华剧,https://iptv.xmtv.qzz.io/?id=34
 TVB娱乐新闻,http://iptv.4666888.xyz/iptv2A.php?id=36
+TVB娱乐新闻,http://iptv.4666888.xyz/iptv2A.php?id=36
+TVB娱乐新闻,https://iptv.xmtv.qzz.io/?id=36
 TVB娱乐新闻,https://iptv.xmtv.qzz.io/?id=36
 TVB明珠,http://iptv.4666888.xyz/iptv2A.php?id=29
+TVB明珠,http://iptv.4666888.xyz/iptv2A.php?id=29
+TVB明珠,https://iptv.xmtv.qzz.io/?id=29
 TVB明珠,https://iptv.xmtv.qzz.io/?id=29
 TVB明珠,https://o11.163189.xyz/stream/tvb/mzt/
 TVBPearl,http://mytv.cdn.loc.cc/o12.php?id=mzt
@@ -325,17 +332,26 @@ TVBPearl,https://mytv.cdn.loc.cc/o12.php?id=mzt
 TVBPlus,http://r.jdshipin.com/Nr5jq
 TVBPlus,https://o11.163189.xyz/stream/tvb/tvbp/
 TVBPlus,http://rihou.cc:555/tv/[Pd]Plus综合
+TVBPlus,http://rihou.cc:555/tv/[Pd]Plus综合
 TVB1,https://6.cdn.loc.cc/163189.php?id=tvb1
+TVB1,http://iptv.4666888.xyz/iptv2A.php?id=25
 TVB1,http://iptv.4666888.xyz/iptv2A.php?id=25
 TVB1,https://iptv.xmtv.qzz.io/?id=25
 TVBJ1,http://iptv.4666888.xyz/iptv2A.php?id=26
+TVBJ1,http://iptv.4666888.xyz/iptv2A.php?id=26
+TVBJ1,https://iptv.xmtv.qzz.io/?id=26
 TVBJ1,https://iptv.xmtv.qzz.io/?id=26
 TVBJ2,http://fm1077.serv00.net/Smart.php?id=j2_twn
 TVB-奖门人,http://iptv.4666888.xyz/iptv2A.php?id=31
+TVB-奖门人,http://iptv.4666888.xyz/iptv2A.php?id=31
+TVB奖门人,https://iptv.xmtv.qzz.io/?id=31
 TVB奖门人,https://iptv.xmtv.qzz.io/?id=31
 TVB金曲,https://iptv.xmtv.qzz.io/?id=57
 TVB金曲,http://iptv.4666888.xyz/iptv2A.php?id=57
+TVB金曲,http://iptv.4666888.xyz/iptv2A.php?id=57
 MYTV黄金翡翠,http://iptv.4666888.xyz/iptv2A.php?id=32
+MYTV黄金翡翠,http://iptv.4666888.xyz/iptv2A.php?id=32
+MYTV黄金翡翠,https://iptv.xmtv.qzz.io/?id=32
 MYTV黄金翡翠,https://iptv.xmtv.qzz.io/?id=32
 Now新闻,http://cdn.163189.xyz/163189/now
 Astro欢喜,http://o11.163189.xyz/stream/live/hxt/
@@ -346,6 +362,8 @@ AstroFOOT,http://iptv.4666888.xyz/iptv2A.php?id=4
 CHU,http://cdn6.163189.xyz/163189/chu
 CH5,http://cdn6.163189.xyz/163189/ch5
 CH8,http://cdn6.163189.xyz/163189/ch8
+RTHK31,http://cdn.163189.xyz/163189/rthk31
+RTHK31,http://cdn.163189.xyz/163189/rthk31
 RTHK31,http://cdn.163189.xyz/163189/rthk31
 RTHK31,http://cdn.163189.xyz/163189/rthk31
 RHK31,http://cdn.163189.xyz/163189/rthk31
@@ -359,11 +377,16 @@ TENNIS,https://iptv.xmtv.qzz.io/?id=62
 ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
 ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
 美亚电影,http://iptv.4666888.xyz/iptv2A.php?id=30
+美亚电影,http://iptv.4666888.xyz/iptv2A.php?id=30
+美亚电影,https://iptv.xmtv.qzz.io/?id=30
 美亚电影,https://iptv.xmtv.qzz.io/?id=30
 华艺中文,http://iptv.4666888.xyz/iptv2A.php?id=37
+华艺中文,https://iptv.xmtv.qzz.io/?id=37
 邵氏電影,http://iptv.4666888.xyz/iptv2A.php?id=39
 邵氏武俠,http://iptv.4666888.xyz/iptv2A.php?id=40
 千禧经典,http://iptv.4666888.xyz/iptv2A.php?id=22
+千禧经典,http://iptv.4666888.xyz/iptv2A.php?id=22
+千禧经典,https://iptv.xmtv.qzz.io/?id=22
 千禧经典,https://iptv.xmtv.qzz.io/?id=22
 千禧经典,https://o11.163189.xyz/stream/live/tvbc/
 无线新闻,http://r.jdshipin.com/CkuBd
@@ -374,13 +397,17 @@ ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
 澳视澳门,http://cdn6.163189.xyz/163189/asam
 澳视澳门,http://cdn6.163189.xyz/163189/asam
 澳视澳门,http://cdn6.163189.xyz/163189/asam
+澳视澳门,http://cdn6.163189.xyz/163189/asam
+澳视澳门,http://cdn6.163189.xyz/163189/asam
 八大戏剧台,http://61.221.215.25:8800/hls/39/index.m3u8
 三立台湾台,http://fm1077.serv00.net/Smart.php?id=sanlitaiwan
 三立戏剧,http://61.221.215.25:8800/hls/41/index.m3u8
 三立综合台,http://fm1077.serv00.net/Smart.php?id=sanlizhonghe
 中天亚洲台,http://fm1077.serv00.net/Smart.php?id=ctiasia_twn
 中天新闻,rtmp://demo2.anj365.com/live/xiangjiaoge-ztxw
+中天新闻,rtmp://demo2.anj365.com/live/xiangjiaoge-ztxw
 中视新闻,https://raw.githubusercontent.com/ChiSheng9/iptv/master/TV09.m3u8
+中视经典,https://stream1.freetv.fun/zhong-shi-jing-dian-3.ctv
 中视经典,https://stream1.freetv.fun/zhong-shi-jing-dian-3.ctv
 民视台湾台,http://fm1077.serv00.net/Smart.php?id=ftvtaiwan_twn
 民视第一台,http://fm1077.serv00.net/Smart.php?id=lunghuajingdian_twn
@@ -408,12 +435,15 @@ ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
 民视综艺,http://iptv.4666888.xyz/iptv2A.php?id=46
 民视综艺,https://iptv.xmtv.qzz.io/?id=46
 华视新闻,https://stream1.freetv.fun/hua-shi-2.m3u8
+华视新闻,https://stream1.freetv.fun/hua-shi-2.m3u8
 纬来日本台,http://fm1077.serv00.net/Smart.php?id=videolandjapan
 靖天国际,https://test.946985.filegear-sg.me/proxy/61ead71226c49dbd
 靖洋戏剧,http://iptv.4666888.xyz/iptv2A.php?id=42
 靖洋戏剧,https://iptv.xmtv.qzz.io/?id=42
 靖天映画,http://breezy-audrie-zspace-7524863c.koyeb.app/vipsir?token=leifeng&id=4gtv-4gtv055
 靖天电影,http://iptv.4666888.xyz/iptv2A.php?id=56
+靖天电影,http://iptv.4666888.xyz/iptv2A.php?id=56
+靖天电影,https://iptv.xmtv.qzz.io/?id=56
 靖天电影,https://iptv.xmtv.qzz.io/?id=56
 纬来电影,http://iptv.4666888.xyz/iptv2A.php?id=54
 纬来电影,https://iptv.xmtv.qzz.io/?id=54
@@ -429,6 +459,8 @@ ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
 龙华经典,https://cdn8.163189.xyz/163189/lhjd
 台视新闻台,http://fm1077.serv00.net/Smart.php?id=ttvnews_twn
 台视综合,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
+台视综合,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
+台视综合,https://iptv.xmtv.qzz.io/?id=51
 台视综合,https://iptv.xmtv.qzz.io/?id=51
 台视综合,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
 台视,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
@@ -444,6 +476,7 @@ TVBS精采,http://iptv.4666888.xyz/iptv2A.php?id=47
 TVBS,http://208.87.201.148/livehttpplay?channel_id=20085
 ViuTV,https://cdn.163189.xyz/163189/viu
 HBO,http://104.250.145.76/livehttpplay?channel_id=23356
+HBO,http://104.250.145.76/livehttpplay?channel_id=23356
 HBO,http://23.237.104.106:8080/USA_HBO/tracks-v1a1/mono.m3u8
 智林体育,https://iptv.xmtv.qzz.io/?id=5
 智林体育,http://iptv.4666888.xyz/iptv2A.php?id=5
@@ -451,4 +484,6 @@ Japan,https://iptv.xmtv.qzz.io/?id=6
 SPOTV2,https://iptv.xmtv.qzz.io/?id=1
 SPOTV2,http://iptv.4666888.xyz/iptv2A.php?id=1
 SPOTV,http://iptv.4666888.xyz/iptv2A.php?id=2
+SPOTV,http://iptv.4666888.xyz/iptv2A.php?id=2
+SPOTV,https://iptv.xmtv.qzz.io/?id=2
 SPOTV,https://iptv.xmtv.qzz.io/?id=2
