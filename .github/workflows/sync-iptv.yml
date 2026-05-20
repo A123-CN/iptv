@@ -2,7 +2,7 @@ name: Sync IPTV Source
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # UTC 15:00 = 北京时间 23:00
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 jobs:
@@ -39,47 +39,40 @@ jobs:
           
           > /tmp/all_urls.txt
           
-          # 下载源1
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
-          # 下载源2
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
-          # 下载源3
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
-          # 下载源4
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.txt" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
-          # 下载源5
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.txt" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
           echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
           
-          # 构建频道->URL映射（支持模糊匹配、优先级排序）
+          # 构建频道->URL映射
           > /tmp/url_map_raw.txt
           
           while IFS=',' read -r channel url; do
-            # 去除首尾空格
             channel=$(echo "$channel" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             url=$(echo "$url" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             
-            # 过滤无效URL
             if [ -z "$channel" ] || [ -z "$url" ]; then
               continue
             fi
             
-            # 确定协议优先级: http=1, https=2, rtsp=3
+            # 协议优先级: http=1, https=2, rtsp=3
             priority=99
             if echo "$url" | grep -q '^http://'; then
               priority=1
@@ -87,11 +80,8 @@ jobs:
               priority=2
             elif echo "$url" | grep -q '^rtsp://'; then
               priority=3
-            else
-              priority=99
             fi
             
-            # 存储原始频道名和简体频道名
             channel_simple=$(tradition_to_simple "$channel")
             echo "$channel|$channel_simple|$url|$priority" >> /tmp/url_map_raw.txt
           done < /tmp/all_urls.txt
@@ -103,22 +93,18 @@ jobs:
             local template="$1"
             local candidate="$2"
             
-            # 完全匹配
             if [ "$template" = "$candidate" ]; then
               return 0
             fi
             
-            # 模板包含在候选中（如 湖北卫视 匹配 湖北卫视HD）
             if echo "$candidate" | grep -q "$template"; then
               return 0
             fi
             
-            # 候选包含在模板中
             if echo "$template" | grep -q "$candidate"; then
               return 0
             fi
             
-            # 去除常见后缀后匹配
             local clean_candidate=$(echo "$candidate" | sed 's/[Hh][Dd]//g;s/高清//g;s/超清//g;s/[0-9]//g;s/[pP]//g;s/[Ff][Hh][Dd]//g;s/4K//g;s/ //g')
             local clean_template=$(echo "$template" | sed 's/[Hh][Dd]//g;s/高清//g;s/超清//g;s/[0-9]//g;s/[pP]//g;s/[Ff][Hh][Dd]//g;s/4K//g;s/ //g')
             
@@ -129,36 +115,48 @@ jobs:
             return 1
           }
           
-          # 获取模板中的所有频道名
-          > /tmp/template_channels.txt
-          grep -v '#genre#' iptv.txt | grep '^[^#].\+,$' | sed 's/,$//' | while read line; do
-            channel=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-            [ -n "$channel" ] && echo "$channel"
-          done > /tmp/template_channels.txt
+          # 调试：查看模板内容
+          echo "=== 模板文件前20行 ==="
+          head -20 iptv.txt
+          
+          echo "=== 提取的频道名 ==="
+          # 提取模板中的频道名（不以#开头的行，且以逗号结尾）
+          grep -v '^#' iptv.txt | grep ',$' | while read line; do
+            channel=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            if [ -n "$channel" ]; then
+              echo "频道: [$channel]"
+            fi
+          done
           
           # 为每个模板频道选择最佳匹配
           > /tmp/url_map.txt
           
-          while read -r template_channel; do
+          grep -v '^#' iptv.txt | grep ',$' | while read line; do
+            template_channel=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             [ -z "$template_channel" ] && continue
             
             template_simple=$(tradition_to_simple "$template_channel")
+            echo "匹配频道: $template_simple"
             
-            # 查找所有匹配的候选
-            > /tmp/matches.txt
+            best_url=""
+            best_priority=99
+            
             while IFS='|' read -r orig_channel simple_channel url priority; do
               if fuzzy_match "$template_simple" "$simple_channel"; then
-                echo "$orig_channel|$url|$priority" >> /tmp/matches.txt
+                if [ $priority -lt $best_priority ]; then
+                  best_priority=$priority
+                  best_url=$url
+                fi
               fi
             done < /tmp/url_map_raw.txt
             
-            # 按优先级排序并选择最佳
-            if [ -s /tmp/matches.txt ]; then
-              best_match=$(sort -t'|' -k3,3n /tmp/matches.txt | head -1)
-              best_url=$(echo "$best_match" | cut -d'|' -f2)
+            if [ -n "$best_url" ]; then
               echo "$template_channel,$best_url" >> /tmp/url_map.txt
+              echo "  ✅ 匹配成功: $template_channel"
+            else
+              echo "  ❌ 匹配失败: $template_channel"
             fi
-          done < /tmp/template_channels.txt
+          done
           
           MATCH_COUNT=$(wc -l < /tmp/url_map.txt)
           echo "模糊匹配完成，共匹配 $MATCH_COUNT 个频道"
@@ -168,25 +166,20 @@ jobs:
           > iptv.txt.new
           
           while IFS= read -r line; do
-            # 保留分类行
             if echo "$line" | grep -q '#genre#$'; then
               echo "$line" >> iptv.txt.new
               continue
             fi
             
-            # 处理频道行
             if echo "$line" | grep -q '^[^#].\+,$'; then
               channel_name=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
               
-              # 从映射中查找URL
               url=$(grep "^$channel_name," /tmp/url_map.txt | head -1 | cut -d',' -f2-)
               
               if [ -n "$url" ]; then
                 echo "$channel_name,$url" >> iptv.txt.new
-                echo "  ✅ 更新: $channel_name"
               else
                 echo "$channel_name," >> iptv.txt.new
-                echo "  ⚠️ 未找到: $channel_name"
               fi
               continue
             fi
@@ -194,7 +187,6 @@ jobs:
             echo "$line" >> iptv.txt.new
           done < iptv.txt
           
-          # 检查更新结果
           NEW_LINES=$(wc -l < iptv.txt.new)
           if [ "$NEW_LINES" -lt 50 ]; then
             echo "❌ 错误: 生成文件行数过少 ($NEW_LINES)"
