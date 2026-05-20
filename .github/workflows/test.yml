@@ -1,28 +1,33 @@
-name: Simple Test
+name: Sync IPTV Source
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: List files
+      - name: Test Read
         run: |
-          echo "=== 列出所有文件 ==="
-          ls -la
+          echo "=== 文件内容 ==="
+          cat iptv.txt | head -10
           
           echo ""
-          echo "=== 查看 iptv.txt 是否存在 ==="
-          if [ -f iptv.txt ]; then
-            echo "文件存在"
-            echo "=== 文件内容 ==="
-            cat iptv.txt | head -10
-          else
-            echo "文件不存在！"
-            echo "当前目录内容："
-            ls -la
-          fi
+          echo "=== 测试 grep 匹配 ==="
+          echo "匹配 ',$' 的行数:"
+          grep ',$' iptv.txt | wc -l
+          
+          echo ""
+          echo "匹配 ', *$' 的行数:"
+          grep ', *$' iptv.txt | wc -l
+          
+          echo ""
+          echo "匹配 ',,' 的行数:"
+          grep ',,' iptv.txt | wc -l
+          
+          echo ""
+          echo "=== 使用 sed 提取 ==="
+          sed -n '/^[^#].*,/p' iptv.txt | head -10
