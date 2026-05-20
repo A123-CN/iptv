@@ -23,10 +23,8 @@ jobs:
           sed -i 's/\r$//' iptv.txt
           
           # 备份原文件
-          if [ -f iptv.txt ]; then
-            cp iptv.txt iptv.txt.bak
-            echo "原文件已备份"
-          fi
+          cp iptv.txt iptv.txt.bak
+          echo "原文件已备份"
           
           # 下载所有源并提取有效URL
           echo "下载并解析各源..."
@@ -55,33 +53,31 @@ jobs:
           
           echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
           
-          # 标准化频道名函数（去除短横线、空格、转为小写）
+          # 标准化频道名函数
           normalize() {
             echo "$1" | sed 's/-//g' | sed 's/ //g' | tr 'A-Z' 'a-z'
           }
           
-          # 构建频道->URL映射（按优先级）
+          # 构建频道->URL映射（只取最优的一个）
           > /tmp/url_map.txt
           
-          # 先提取模板中的所有频道名
           grep -v '#genre#' iptv.txt | grep -v '^$' | sed 's/,$//' | while read template_channel; do
             [ -z "$template_channel" ] && continue
             
             template_norm=$(normalize "$template_channel")
             
-            # 在源文件中查找匹配的URL
             best_url=""
             best_priority=99
             
             while IFS=',' read -r source_channel source_url; do
               source_norm=$(normalize "$source_channel")
               
-              # 模糊匹配：标准化后相等 或 包含关系
+              # 模糊匹配
               if [ "$template_norm" = "$source_norm" ] || \
                  echo "$source_norm" | grep -q "$template_norm" || \
                  echo "$template_norm" | grep -q "$source_norm"; then
                 
-                # 确定优先级
+                # 优先级: http=1, https=2, rtsp=3, 其他=99
                 priority=99
                 if echo "$source_url" | grep -q '^http://'; then
                   priority=1
@@ -99,8 +95,10 @@ jobs:
             done < /tmp/all_urls.txt
             
             if [ -n "$best_url" ]; then
-              echo "$template_channel,$best_url" >> /tmp/url_map.txt
-              echo "  ✅ 匹配: $template_channel -> $best_url"
+              # 只取第一个URL（如果包含多个#分隔的，只取第一个）
+              first_url=$(echo "$best_url" | cut -d'#' -f1)
+              echo "$template_channel,$first_url" >> /tmp/url_map.txt
+              echo "  ✅ $template_channel -> $first_url"
             else
               echo "  ⚠️ 未找到: $template_channel"
             fi
@@ -146,18 +144,16 @@ jobs:
 
       - name: Commit and Push
         run: |
-          if [ -f iptv.txt.bak ] && diff -q iptv.txt iptv.txt.bak > /dev/null; then
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add iptv.txt
+          
+          if git diff --cached --quiet; then
             echo "✅ 内容无变化，跳过提交"
             exit 0
           fi
           
-          echo "🔄 检测到变化，准备提交"
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
-          git add iptv.txt
           git commit -m "Update IPTV URLs - $(date '+%Y-%m-%d %H:%M:%S')"
-          
           git pull --rebase --strategy-option ours
           git push
-          
           echo "✅ 已成功推送到仓库"
