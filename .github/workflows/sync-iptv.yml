@@ -2,7 +2,7 @@ name: Sync IPTV Source
 
 on:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '0 13 * * *'  # UTC 13:00 = 北京时间 21:00
   workflow_dispatch:
 
 jobs:
@@ -19,6 +19,11 @@ jobs:
           echo "=== 开始更新 IPTV 源 ==="
           echo "时间: $(date)"
           
+          # 安装 ffmpeg
+          echo "安装 ffmpeg..."
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          
           # 转换换行符
           sed -i 's/\r$//' iptv.txt
           
@@ -32,23 +37,15 @@ jobs:
           > /tmp/all_urls.txt
           
           curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyidong" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-          
-          curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
           curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hubeiyd" 2>/dev/null | \
+            "https://raw.githubusercontent.com/CCSH/IPTV/main/live.txt" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-          
+
           curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live.txt" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-          
-          curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.txt" 2>/dev/null | \
+            "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/GNTV.m3u" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
           
           echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
@@ -58,7 +55,14 @@ jobs:
             echo "$1" | sed 's/-//g' | sed 's/ //g' | tr 'A-Z' 'a-z'
           }
           
-          # 构建频道->URL映射（只取最优的一个）
+          # URL 有效性检测函数
+          check_url() {
+            url=$1
+            timeout 3 ffprobe -v error -t 2 "$url" 2>/dev/null
+            return $?
+          }
+          
+          # 构建频道->URL映射（只取有效且最优的一个）
           > /tmp/url_map.txt
           
           grep -v '#genre#' iptv.txt | grep -v '^$' | sed 's/,$//' | while read template_channel; do
@@ -77,30 +81,33 @@ jobs:
                  echo "$source_norm" | grep -q "$template_norm" || \
                  echo "$template_norm" | grep -q "$source_norm"; then
                 
-                # 优先级: http=1, https=2, rtsp=3, 其他=99
+                # 优先级: http=1, rtsp=2, https=3
                 priority=99
                 if echo "$source_url" | grep -q '^http://'; then
                   priority=1
-                elif echo "$source_url" | grep -q '^https://'; then
-                  priority=2
                 elif echo "$source_url" | grep -q '^rtsp://'; then
+                  priority=2
+                elif echo "$source_url" | grep -q '^https://'; then
                   priority=3
                 fi
                 
-                if [ $priority -lt $best_priority ]; then
-                  best_priority=$priority
-                  best_url="$source_url"
+                # 检测 URL 有效性
+                if check_url "$source_url"; then
+                  if [ $priority -lt $best_priority ]; then
+                    best_priority=$priority
+                    best_url="$source_url"
+                  fi
                 fi
               fi
             done < /tmp/all_urls.txt
             
             if [ -n "$best_url" ]; then
-              # 只取第一个URL（如果包含多个#分隔的，只取第一个）
+              # 只取第一个URL
               first_url=$(echo "$best_url" | cut -d'#' -f1)
               echo "$template_channel,$first_url" >> /tmp/url_map.txt
               echo "  ✅ $template_channel -> $first_url"
             else
-              echo "  ⚠️ 未找到: $template_channel"
+              echo "  ⚠️ 未找到有效URL: $template_channel"
             fi
           done
           
