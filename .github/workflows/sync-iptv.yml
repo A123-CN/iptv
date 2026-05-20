@@ -67,12 +67,12 @@ jobs:
           echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
           
           # 构建频道->URL映射（支持模糊匹配、优先级排序）
-          # 存储为: 频道名|URL|协议|原始频道名
           > /tmp/url_map_raw.txt
           
           while IFS=',' read -r channel url; do
-            channel=$(echo "$channel" | xargs)
-            url=$(echo "$url" | xargs)
+            # 去除首尾空格
+            channel=$(echo "$channel" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            url=$(echo "$url" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             
             # 过滤无效URL
             if [ -z "$channel" ] || [ -z "$url" ]; then
@@ -96,6 +96,8 @@ jobs:
             echo "$channel|$channel_simple|$url|$priority" >> /tmp/url_map_raw.txt
           done < /tmp/all_urls.txt
           
+          echo "原始记录处理完成，共 $(wc -l < /tmp/url_map_raw.txt) 条有效记录"
+          
           # 模糊匹配函数
           fuzzy_match() {
             local template="$1"
@@ -117,8 +119,8 @@ jobs:
             fi
             
             # 去除常见后缀后匹配
-            local clean_candidate=$(echo "$candidate" | sed 's/\([Hh][Dd]\)\|\(高清\)\|\(超清\)\|\([0-9]\)\|\([pP]\)\|\([fF][hH][dD]\)\|\([4K]\)//g' | xargs)
-            local clean_template=$(echo "$template" | sed 's/\([Hh][Dd]\)\|\(高清\)\|\(超清\)\|\([0-9]\)\|\([pP]\)\|\([fF][hH][dD]\)\|\([4K]\)//g' | xargs)
+            local clean_candidate=$(echo "$candidate" | sed 's/[Hh][Dd]//g;s/高清//g;s/超清//g;s/[0-9]//g;s/[pP]//g;s/[Ff][Hh][Dd]//g;s/4K//g;s/ //g')
+            local clean_template=$(echo "$template" | sed 's/[Hh][Dd]//g;s/高清//g;s/超清//g;s/[0-9]//g;s/[pP]//g;s/[Ff][Hh][Dd]//g;s/4K//g;s/ //g')
             
             if [ "$clean_template" = "$clean_candidate" ]; then
               return 0
@@ -127,12 +129,17 @@ jobs:
             return 1
           }
           
+          # 获取模板中的所有频道名
+          > /tmp/template_channels.txt
+          grep -v '#genre#' iptv.txt | grep '^[^#].\+,$' | sed 's/,$//' | while read line; do
+            channel=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            [ -n "$channel" ] && echo "$channel"
+          done > /tmp/template_channels.txt
+          
           # 为每个模板频道选择最佳匹配
           > /tmp/url_map.txt
           
-          while IFS= read -r template_line; do
-            # 提取模板频道名
-            template_channel=$(echo "$template_line" | sed 's/,$//' | xargs)
+          while read -r template_channel; do
             [ -z "$template_channel" ] && continue
             
             template_simple=$(tradition_to_simple "$template_channel")
@@ -145,15 +152,13 @@ jobs:
               fi
             done < /tmp/url_map_raw.txt
             
-            # 按优先级排序（先按priority数字，再按URL长度等）
+            # 按优先级排序并选择最佳
             if [ -s /tmp/matches.txt ]; then
-              # 优先级排序: http(1) > https(2) > rtsp(3)
               best_match=$(sort -t'|' -k3,3n /tmp/matches.txt | head -1)
               best_url=$(echo "$best_match" | cut -d'|' -f2)
               echo "$template_channel,$best_url" >> /tmp/url_map.txt
-              echo "  ✅ 匹配: $template_channel -> $(echo "$best_match" | cut -d'|' -f1)"
             fi
-          done < <(grep -v '#genre#' iptv.txt | grep '^[^#].+,' | sed 's/,$//')
+          done < /tmp/template_channels.txt
           
           MATCH_COUNT=$(wc -l < /tmp/url_map.txt)
           echo "模糊匹配完成，共匹配 $MATCH_COUNT 个频道"
@@ -170,8 +175,8 @@ jobs:
             fi
             
             # 处理频道行
-            if echo "$line" | grep -q '^[^#].+,$'; then
-              channel_name=$(echo "$line" | sed 's/,$//' | xargs)
+            if echo "$line" | grep -q '^[^#].\+,$'; then
+              channel_name=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
               
               # 从映射中查找URL
               url=$(grep "^$channel_name," /tmp/url_map.txt | head -1 | cut -d',' -f2-)
