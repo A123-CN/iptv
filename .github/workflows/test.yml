@@ -10,24 +10,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test Read
+      - name: Update IPTV URLs
         run: |
-          echo "=== 文件内容 ==="
-          cat iptv.txt | head -10
+          echo "=== 开始更新 IPTV 源 ==="
+          echo "时间: $(date)"
+          
+          # 转换换行符
+          sed -i 's/\r$//' iptv.txt
+          
+          # 下载源
+          echo "下载源..."
+          curl -L --connect-timeout 30 --max-time 60 \
+            "https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/live_lite.txt" \
+            -o /tmp/source.txt 2>/dev/null
+          
+          echo "源文件行数: $(wc -l < /tmp/source.txt)"
+          
+          # 简单匹配：只为 CCTV-1 找 URL
+          echo "=== 查找 CCTV-1 的 URL ==="
+          grep -i "CCTV[-_]1" /tmp/source.txt | head -5
           
           echo ""
-          echo "=== 测试 grep 匹配 ==="
-          echo "匹配 ',$' 的行数:"
-          grep ',$' iptv.txt | wc -l
-          
-          echo ""
-          echo "匹配 ', *$' 的行数:"
-          grep ', *$' iptv.txt | wc -l
-          
-          echo ""
-          echo "匹配 ',,' 的行数:"
-          grep ',,' iptv.txt | wc -l
-          
-          echo ""
-          echo "=== 使用 sed 提取 ==="
-          sed -n '/^[^#].*,/p' iptv.txt | head -10
+          echo "=== 模板中的频道名 ==="
+          grep -v '#genre#' iptv.txt | grep -v '^$' | head -20
