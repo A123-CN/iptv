@@ -1,0 +1,38 @@
+name: Test Read Template
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test Read
+        run: |
+          echo "=== 文件内容 ==="
+          cat iptv.txt | head -30
+          
+          echo ""
+          echo "=== 十六进制查看前几行 ==="
+          head -5 iptv.txt | od -c
+          
+          echo ""
+          echo "=== 测试 grep 匹配 ==="
+          echo "匹配 '#genre#' 的行:"
+          grep '#genre#' iptv.txt | head -5
+          
+          echo ""
+          echo "匹配 ',$' 的行:"
+          grep ',$' iptv.txt | wc -l
+          echo "前10行:"
+          grep ',$' iptv.txt | head -10
+          
+          echo ""
+          echo "=== 测试提取频道名 ==="
+          grep ',$' iptv.txt | while read line; do
+            channel=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            echo "频道: [$channel]"
+          done | head -20
