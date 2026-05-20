@@ -25,6 +25,15 @@ jobs:
             echo "原文件已备份"
           fi
           
+          # 安装繁简转换工具
+          sudo apt-get update
+          sudo apt-get install -y opencc
+          
+          # 繁转简函数
+          tradition_to_simple() {
+            echo "$1" | opencc -c t2s 2>/dev/null || echo "$1"
+          }
+          
           # 下载所有源并提取有效URL
           echo "下载并解析各源..."
           
@@ -57,26 +66,104 @@ jobs:
           
           echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
           
-          # 构建频道->URL映射（取第一个匹配的URL）
-          > /tmp/url_map.txt
+          # 构建频道->URL映射（支持模糊匹配、优先级排序）
+          # 存储为: 频道名|URL|协议|原始频道名
+          > /tmp/url_map_raw.txt
+          
           while IFS=',' read -r channel url; do
             channel=$(echo "$channel" | xargs)
             url=$(echo "$url" | xargs)
-            if [ -n "$channel" ] && [ -n "$url" ]; then
-              if ! grep -q "^$channel," /tmp/url_map.txt 2>/dev/null; then
-                echo "$channel,$url" >> /tmp/url_map.txt
-              fi
+            
+            # 过滤无效URL
+            if [ -z "$channel" ] || [ -z "$url" ]; then
+              continue
             fi
+            
+            # 确定协议优先级: http=1, https=2, rtsp=3
+            priority=99
+            if echo "$url" | grep -q '^http://'; then
+              priority=1
+            elif echo "$url" | grep -q '^https://'; then
+              priority=2
+            elif echo "$url" | grep -q '^rtsp://'; then
+              priority=3
+            else
+              priority=99
+            fi
+            
+            # 存储原始频道名和简体频道名
+            channel_simple=$(tradition_to_simple "$channel")
+            echo "$channel|$channel_simple|$url|$priority" >> /tmp/url_map_raw.txt
           done < /tmp/all_urls.txt
           
-          echo "去重后共有 $(wc -l < /tmp/url_map.txt) 个频道有有效URL"
+          # 模糊匹配函数
+          fuzzy_match() {
+            local template="$1"
+            local candidate="$2"
+            
+            # 完全匹配
+            if [ "$template" = "$candidate" ]; then
+              return 0
+            fi
+            
+            # 模板包含在候选中（如 湖北卫视 匹配 湖北卫视HD）
+            if echo "$candidate" | grep -q "$template"; then
+              return 0
+            fi
+            
+            # 候选包含在模板中
+            if echo "$template" | grep -q "$candidate"; then
+              return 0
+            fi
+            
+            # 去除常见后缀后匹配
+            local clean_candidate=$(echo "$candidate" | sed 's/\([Hh][Dd]\)\|\(高清\)\|\(超清\)\|\([0-9]\)\|\([pP]\)\|\([fF][hH][dD]\)\|\([4K]\)//g' | xargs)
+            local clean_template=$(echo "$template" | sed 's/\([Hh][Dd]\)\|\(高清\)\|\(超清\)\|\([0-9]\)\|\([pP]\)\|\([fF][hH][dD]\)\|\([4K]\)//g' | xargs)
+            
+            if [ "$clean_template" = "$clean_candidate" ]; then
+              return 0
+            fi
+            
+            return 1
+          }
+          
+          # 为每个模板频道选择最佳匹配
+          > /tmp/url_map.txt
+          
+          while IFS= read -r template_line; do
+            # 提取模板频道名
+            template_channel=$(echo "$template_line" | sed 's/,$//' | xargs)
+            [ -z "$template_channel" ] && continue
+            
+            template_simple=$(tradition_to_simple "$template_channel")
+            
+            # 查找所有匹配的候选
+            > /tmp/matches.txt
+            while IFS='|' read -r orig_channel simple_channel url priority; do
+              if fuzzy_match "$template_simple" "$simple_channel"; then
+                echo "$orig_channel|$url|$priority" >> /tmp/matches.txt
+              fi
+            done < /tmp/url_map_raw.txt
+            
+            # 按优先级排序（先按priority数字，再按URL长度等）
+            if [ -s /tmp/matches.txt ]; then
+              # 优先级排序: http(1) > https(2) > rtsp(3)
+              best_match=$(sort -t'|' -k3,3n /tmp/matches.txt | head -1)
+              best_url=$(echo "$best_match" | cut -d'|' -f2)
+              echo "$template_channel,$best_url" >> /tmp/url_map.txt
+              echo "  ✅ 匹配: $template_channel -> $(echo "$best_match" | cut -d'|' -f1)"
+            fi
+          done < <(grep -v '#genre#' iptv.txt | grep '^[^#].+,' | sed 's/,$//')
+          
+          MATCH_COUNT=$(wc -l < /tmp/url_map.txt)
+          echo "模糊匹配完成，共匹配 $MATCH_COUNT 个频道"
           
           # 读取模板并更新URL
           echo "开始更新 iptv.txt..."
           > iptv.txt.new
           
           while IFS= read -r line; do
-            # 保留分类行（以#genre#结尾的行）
+            # 保留分类行
             if echo "$line" | grep -q '#genre#$'; then
               echo "$line" >> iptv.txt.new
               continue
@@ -93,14 +180,12 @@ jobs:
                 echo "$channel_name,$url" >> iptv.txt.new
                 echo "  ✅ 更新: $channel_name"
               else
-                # 没有找到URL，保持原样（空URL）
                 echo "$channel_name," >> iptv.txt.new
                 echo "  ⚠️ 未找到: $channel_name"
               fi
               continue
             fi
             
-            # 空行或其他行直接保留
             echo "$line" >> iptv.txt.new
           done < iptv.txt
           
@@ -116,7 +201,6 @@ jobs:
 
       - name: Commit and Push
         run: |
-          # 检查是否有变化
           if [ -f iptv.txt.bak ] && diff -q iptv.txt iptv.txt.bak > /dev/null; then
             echo "✅ 内容无变化，跳过提交"
             exit 0
