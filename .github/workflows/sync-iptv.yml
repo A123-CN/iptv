@@ -58,7 +58,7 @@ jobs:
           # URL 有效性检测函数
           check_url() {
             url=$1
-            timeout 3 ffprobe -v error -t 2 "$url" 2>/dev/null
+            timeout 8 ffprobe -v error -t 5 "$url" 2>/dev/null
             return $?
           }
           
