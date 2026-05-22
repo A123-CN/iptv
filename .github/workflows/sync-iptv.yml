@@ -39,9 +39,13 @@ jobs:
           curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-          
+
           curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.githubusercontent.com/CCSH/IPTV/main/live.txt" 2>/dev/null | \
+            "https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/ipv4.txt" 2>/dev/null | \
+            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
+
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://live.zbds.top/tv/iptv4.txt" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
 
           curl -L --fail --connect-timeout 30 --max-time 60 \
