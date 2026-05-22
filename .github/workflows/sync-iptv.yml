@@ -41,6 +41,10 @@ jobs:
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
 
           curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://gitee.com/yuweirong6684/tv-live-streaming-source/blob/master/abc.txt" 2>/dev/null | \
+            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
+
+          curl -L --fail --connect-timeout 30 --max-time 60 \
             "https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/ipv4.txt" 2>/dev/null | \
             grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
 
