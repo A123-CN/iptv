@@ -69,7 +69,7 @@ jobs:
           check_url() {
             local url="$1"
             # 更快的检测：只检查连接，不分析流
-            timeout 8 ffprobe -v quiet -t 3 "$url" >/dev/null 2>&1
+            timeout 10 ffprobe -v quiet -t 8 "$url" >/dev/null 2>&1
             return $?
           }
           
