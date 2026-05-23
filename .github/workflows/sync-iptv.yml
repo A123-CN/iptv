@@ -16,6 +16,8 @@ jobs:
 
       - name: Update IPTV URLs
         run: |
+          set -euo pipefail  # 严格模式，任何错误都会终止
+          
           echo "=== 开始更新 IPTV 源 ==="
           echo "时间: $(date)"
           
@@ -29,131 +31,125 @@ jobs:
           
           # 备份原文件
           cp iptv.txt iptv.txt.bak
-          echo "原文件已备份"
+          echo "原文件已备份到 iptv.txt.bak"
           
           # 下载所有源并提取有效URL
           echo "下载并解析各源..."
           
           > /tmp/all_urls.txt
           
-          curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-
-          curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.giteeusercontent.com/yuweirong6684/tv-live-streaming-source/raw/master/abc.txt" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-
-          curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/ipv4.txt" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-
-          curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://live.zbds.top/tv/iptv4.txt" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
-
-          curl -L --fail --connect-timeout 30 --max-time 60 \
-            "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/GNTV.m3u" 2>/dev/null | \
-            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
+          # 定义源列表
+          SOURCES=(
+            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd"
+            "https://raw.giteeusercontent.com/yuweirong6684/tv-live-streaming-source/raw/master/abc.txt"
+            "https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/ipv4.txt"
+            "https://live.zbds.top/tv/iptv4.txt"
+            "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/GNTV.m3u"
+          )
           
-          echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
+          for source in "${SOURCES[@]}"; do
+            echo "  下载: $source"
+            # 增加重试机制
+            for i in {1..3}; do
+              if curl -L --fail --connect-timeout 30 --max-time 60 "$source" 2>/dev/null | \
+                 grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null; then
+                echo "    ✅ 下载成功"
+                break
+              else
+                echo "    ⚠️ 下载失败，重试 $i/3..."
+                sleep 5
+              fi
+            done
+          done
           
-          # 标准化频道名函数
-          normalize() {
-            echo "$1" | sed 's/-//g' | sed 's/ //g' | tr 'A-Z' 'a-z'
-          }
+          total_urls=$(wc -l < /tmp/all_urls.txt)
+          echo "下载完成，共获取 $total_urls 条记录"
           
-          # URL 有效性检测函数
+          # URL 有效性检测函数（简化版）
           check_url() {
-            url=$1
-            timeout 8 ffprobe -v error -t 5 "$url" 2>/dev/null
+            local url="$1"
+            # 更快的检测：只检查连接，不分析流
+            timeout 8 ffprobe -v quiet -t 3 "$url" >/dev/null 2>&1
             return $?
           }
           
-          # 构建频道->URL映射（只取有效且最优的一个）
-          > /tmp/url_map.txt
+          # 标准化频道名函数
+          normalize() {
+            echo "$1" | sed 's/[^a-zA-Z0-9]//g' | tr 'A-Z' 'a-z'
+          }
           
-          grep -v '#genre#' iptv.txt | grep -v '^$' | sed 's/,$//' | while read template_channel; do
-            [ -z "$template_channel" ] && continue
-            
-            template_norm=$(normalize "$template_channel")
-            
-            best_url=""
-            best_priority=99
-            
-            while IFS=',' read -r source_channel source_url; do
-              source_norm=$(normalize "$source_channel")
-              
-              # 模糊匹配
-              if [ "$template_norm" = "$source_norm" ] || \
-                 echo "$source_norm" | grep -q "$template_norm" || \
-                 echo "$template_norm" | grep -q "$source_norm"; then
-                
-                # 优先级: http=1, rtsp=2, https=3
-                priority=99
-                if echo "$source_url" | grep -q '^http://'; then
-                  priority=1
-                elif echo "$source_url" | grep -q '^rtsp://'; then
-                  priority=2
-                elif echo "$source_url" | grep -q '^https://'; then
-                  priority=3
-                fi
-                
-                # 检测 URL 有效性
-                if check_url "$source_url"; then
-                  if [ $priority -lt $best_priority ]; then
-                    best_priority=$priority
-                    best_url="$source_url"
-                  fi
-                fi
-              fi
-            done < /tmp/all_urls.txt
-            
-            if [ -n "$best_url" ]; then
-              # 只取第一个URL
-              first_url=$(echo "$best_url" | cut -d'#' -f1)
-              echo "$template_channel,$first_url" >> /tmp/url_map.txt
-              echo "  ✅ $template_channel -> $first_url"
-            else
-              echo "  ⚠️ 未找到有效URL: $template_channel"
+          # 先构建源频道的标准化映射
+          declare -A source_map
+          while IFS=',' read -r channel url; do
+            norm_channel=$(normalize "$channel")
+            # 如果已存在，取优先级更高的URL
+            if [ -z "${source_map[$norm_channel]:-}" ]; then
+              source_map["$norm_channel"]="$url"
             fi
-          done
-          
-          MATCH_COUNT=$(wc -l < /tmp/url_map.txt)
-          echo "匹配完成，共匹配 $MATCH_COUNT 个频道"
+          done < /tmp/all_urls.txt
           
           # 更新 iptv.txt
           echo "开始更新 iptv.txt..."
-          > iptv.txt.new
+          matched=0
+          total=0
           
           while IFS= read -r line; do
-            if echo "$line" | grep -q '#genre#'; then
-              echo "$line" >> iptv.txt.new
+            # 保留分类标记行
+            if [[ "$line" =~ #genre# ]]; then
+              echo "$line"
               continue
             fi
             
-            if echo "$line" | grep -q '^[^#].\+,$'; then
-              channel_name=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-              
-              url=$(grep "^$channel_name," /tmp/url_map.txt | head -1 | cut -d',' -f2-)
-              
-              if [ -n "$url" ]; then
-                echo "$channel_name,$url" >> iptv.txt.new
+            # 跳过空行和注释
+            [[ -z "$line" || "$line" =~ ^# ]] && { echo "$line"; continue; }
+            
+            # 提取频道名
+            channel_name=$(echo "$line" | sed 's/,$//')
+            norm_name=$(normalize "$channel_name")
+            total=$((total + 1))
+            
+            # 查找匹配的URL
+            new_url=""
+            # 精确匹配
+            if [ -n "${source_map[$norm_name]:-}" ]; then
+              new_url="${source_map[$norm_name]}"
+            else
+              # 模糊匹配
+              for src_norm in "${!source_map[@]}"; do
+                if [[ "$src_norm" == *"$norm_name"* ]] || [[ "$norm_name" == *"$src_norm"* ]]; then
+                  new_url="${source_map[$src_norm]}"
+                  break
+                fi
+              done
+            fi
+            
+            if [ -n "$new_url" ]; then
+              # 检测URL有效性
+              if check_url "$new_url"; then
+                echo "$channel_name,$new_url"
+                echo "  ✅ $channel_name -> $new_url"
+                matched=$((matched + 1))
               else
-                echo "$channel_name," >> iptv.txt.new
+                echo "$channel_name,"
+                echo "  ❌ $channel_name -> URL无效"
               fi
-              continue
+            else
+              echo "$channel_name,"
+              echo "  ⚠️ $channel_name -> 未找到匹配"
             fi
-            
-            echo "$line" >> iptv.txt.new
-          done < iptv.txt
+          done < iptv.txt > iptv.txt.new
           
-          NEW_LINES=$(wc -l < iptv.txt.new)
-          if [ "$NEW_LINES" -lt 50 ]; then
-            echo "❌ 错误: 生成文件行数过少 ($NEW_LINES)"
+          # 检查结果
+          new_lines=$(wc -l < iptv.txt.new)
+          echo "匹配统计: $matched/$total 个频道成功匹配"
+          
+          if [ "$new_lines" -lt 50 ]; then
+            echo "❌ 错误: 生成文件行数过少 ($new_lines)"
+            cp iptv.txt.bak iptv.txt
             exit 1
           fi
           
+          # 替换原文件
           mv iptv.txt.new iptv.txt
           echo "✅ 更新完成"
 
