@@ -1,0 +1,54 @@
+name: Sync IPTV Source
+
+on:
+  # 每天凌晨 3:30 (UTC+8) 自动执行
+  schedule:
+    - cron: '30 19 * * *'
+  # 允许在 Actions 页面手动点击运行测试
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download tv.txt from source
+        run: |
+          echo "⬇️ 正在从源地址获取数据..."
+          curl -fSL --connect-timeout 15 --max-time 60 \
+            -o tv.txt \
+            "http://192168125.ddnsto.com:5000/tv.txt"
+          
+          if [ ! -s tv.txt ]; then
+            echo "❌ 下载失败或文件为空，终止同步"
+            exit 1
+          fi
+          
+          LINES=$(wc -l < tv.txt)
+          SIZE=$(du -h tv.txt | cut -f1)
+          echo "✅ 下载成功: ${LINES} 行, 大小: ${SIZE}"
+
+      - name: Record sync log and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          TIMESTAMP=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
+          LINES=$(wc -l < tv.txt)
+          
+          # 1. 先追加本次同步记录
+          echo "${TIMESTAMP} | ✅ 同步成功 | ${LINES} 行" >> sync.log
+          
+          # 2. 只保留最近30条记录（必须在 git add 之前执行）
+          tail -n 30 sync.log > sync.log.tmp && mv sync.log.tmp sync.log
+          
+          # 3. 提交并推送
+          git add tv.txt sync.log
+          git commit -m "Auto sync TV source at ${TIMESTAMP}"
+          git push
+          echo "✅ 推送成功"
