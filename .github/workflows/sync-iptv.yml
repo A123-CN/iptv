@@ -1,25 +1,3 @@
-name: Sync IPTV Source
-
-on:
-  schedule:
-    - cron: '0 13 * * *'  # UTC 13:00 = 北京时间 21:00
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          persist-credentials: true
-
       - name: Update IPTV URLs
         run: |
           set -euo pipefail
@@ -44,9 +22,7 @@ jobs:
               return 1
             fi
             
-            # ✅ 核心修复：全局强制去除所有回车符和换行符残留，防止污染后续逻辑
-            tr -d '\r' < "$tmp_file" > "${tmp_file}.clean"
-            mv "${tmp_file}.clean" "$tmp_file"
+            tr -d '\r\n' < "$tmp_file" > "${tmp_file}.clean" && mv "${tmp_file}.clean" "$tmp_file"
             
             if head -n 5 "$tmp_file" | grep -qi '#EXTM3U\|#EXTINF'; then
               echo "    🔄 检测到 M3U 格式，正在转换..."
@@ -55,7 +31,6 @@ jobs:
                   sub(/^#EXTINF:[^,]*,/, "")
                   gsub(/^[[:space:]]+|[[:space:]]+$/, "")
                   gsub(/"/, "")
-                  # 防止频道名内部包含异常换行，强制替换为空格
                   gsub(/\n/, " ")
                   channel = $0
                   next
@@ -100,7 +75,6 @@ jobs:
             fi
           done
           
-          # 🛡️ 深度清洗：确保每一行都是严格的单行合法数据
           sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' /tmp/all_urls.txt
           awk -F',' 'NF>=2 && $1!="" && $2~/^https?:\/\//' /tmp/all_urls.txt | sort -u > /tmp/all_urls_clean.txt
           mv /tmp/all_urls_clean.txt /tmp/all_urls.txt
@@ -109,7 +83,6 @@ jobs:
           echo "下载完成，清洗后共获取 $total_urls 条有效记录"
           
           normalize() {
-            # 增加对换行符的显式过滤
             echo "$1" | tr -d '\n\r' | sed 's/[^a-zA-Z0-9\u4e00-\u9fa5]//g' | tr 'A-Z' 'a-z'
           }
           
@@ -135,65 +108,52 @@ jobs:
           total=0
           > /tmp/check_tasks.txt
           
+          # ✅ 关键修复：按模板格式处理 iptv.txt
           while IFS= read -r line; do
-            # ✅ 安全兜底：跳过包含换行符或空白的异常行
-            if [[ -z "$line" ]] || [[ "$line" =~ [[:cntrl:]] ]]; then continue; fi
-            if [[ "$line" == *"#genre#"* ]] || [[ "$line" == "#"* ]]; then continue; fi
+            [[ -z "$line" ]] && continue
+            [[ "$line" =~ [[:cntrl:]] ]] && continue
             
-            channel_name="${line%%,*}"
-            norm_name=$(normalize "$channel_name")
-            new_url=""
-            
-            if [ -n "$norm_name" ] && [ -n "${source_map[$norm_name]:-}" ]; then
-              new_url="${source_map[$norm_name]}"
-            else
-              for src_norm in "${!source_map[@]}"; do
-                if [[ "$src_norm" == "$norm_name"* ]] || [[ "$norm_name" == "$src_norm"* ]]; then
-                  new_url="${source_map[$src_norm]}"
-                  break
-                fi
-              done
+            # 1. #genre# 行：原样输出
+            if [[ "$line" =~ ^[[:space:]]*[^#]*,[[:space:]]*#genre#[[:space:]]*$ ]]; then
+              echo "$line"
+              continue
             fi
             
-            total=$((total + 1))
-            if [ -n "$new_url" ]; then
-              echo "${channel_name}|${new_url}" >> /tmp/check_tasks.txt
-            else
-              echo "${channel_name}|" >> /tmp/check_tasks.txt
+            # 2. 纯频道名行：频道名,
+            if [[ "$line" =~ ^[^,]+,$ ]]; then
+              channel_name="${line%,}"
+              norm_name=$(normalize "$channel_name")
+              new_url=""
+              
+              if [ -n "$norm_name" ] && [ -n "${source_map[$norm_name]:-}" ]; then
+                new_url="${source_map[$norm_name]}"
+              else
+                for src_norm in "${!source_map[@]}"; do
+                  if [[ "$src_norm" == "$norm_name"* ]] || [[ "$norm_name" == "$src_norm"* ]]; then
+                    new_url="${source_map[$src_norm]}"
+                    break
+                  fi
+                done
+              fi
+              
+              total=$((total + 1))
+              if [ -n "$new_url" ]; then
+                echo "${channel_name},${new_url}"
+                if check_url "$new_url"; then matched=$((matched + 1)); fi
+              else
+                echo "${channel_name},"
+              fi
+              continue
             fi
-          done < iptv.txt
-          
-          echo "开始并发检测 ${total} 个频道..."
-          > /tmp/check_results.txt
-          cat /tmp/check_tasks.txt | xargs -P 10 -I {} bash -c '
-            IFS="|" read -r ch url <<< "{}"
-            if [ -z "$url" ]; then
-              echo "${ch}||⚠️ 未找到匹配" >> /tmp/check_results.txt
-            elif check_url "$url"; then
-              echo "${ch}|${url}|✅" >> /tmp/check_results.txt
-            else
-              echo "${ch}||❌ URL无效" >> /tmp/check_results.txt
-            fi
-          '
-          
-          declare -A result_map
-          while IFS='|' read -r ch url status; do
-            result_map["$ch"]="${url}|${status}"
-          done < /tmp/check_results.txt
-          
-          while IFS= read -r line; do
-            if [[ -z "$line" ]] || [[ "$line" =~ [[:cntrl:]] ]]; then echo "$line"; continue; fi
-            if [[ "$line" == *"#genre#"* ]] || [[ "$line" == "#"* ]]; then echo "$line"; continue; fi
             
-            channel_name="${line%%,*}"
-            if [ -n "${result_map[$channel_name]:-}" ]; then
-              IFS='|' read -r final_url status <<< "${result_map[$channel_name]}"
-              echo "$channel_name,$final_url"
-              if [ "$status" = "✅" ]; then matched=$((matched + 1)); fi
-              echo "  $status $channel_name -> $final_url"
-            else
-              echo "$channel_name,"
+            # 3. 已有 URL 的行：原样保留
+            if [[ "$line" =~ ^[^,]+,https?:// ]]; then
+              echo "$line"
+              continue
             fi
+            
+            # 4. 兜底：未知格式，原样输出
+            echo "$line"
           done < iptv.txt > iptv.txt.new
           
           new_lines=$(wc -l < iptv.txt.new)
@@ -207,26 +167,3 @@ jobs:
           
           mv iptv.txt.new iptv.txt
           echo "✅ 更新完成"
-
-      - name: Record log and Commit
-        run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
-          
-          TIMESTAMP=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
-          MATCHED=$(grep -c ',http' iptv.txt || true)
-          TOTAL=$(grep -cv '^#\|^$\|#genre#' iptv.txt || true)
-          
-          echo "${TIMESTAMP} | ✅ 同步成功 | 有效:${MATCHED}/${TOTAL}" >> sync.log
-          tail -n 30 sync.log > sync.log.tmp && mv sync.log.tmp sync.log
-          
-          git add iptv.txt sync.log
-          if git diff --cached --quiet; then
-            echo "✅ 内容无变化，跳过提交"
-            exit 0
-          fi
-          
-          git commit -m "Update IPTV - ${TIMESTAMP} (有效:${MATCHED}/${TOTAL})"
-          git pull --rebase --strategy-option ours
-          git push
-          echo "✅ 已成功推送到仓库"
