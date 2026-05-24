@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        # ✅ 已升级至 v5，原生支持 Node.js 24，消除弃用警告
+        uses: actions/checkout@v5
 
       - name: Download tv.txt from source
         run: |
