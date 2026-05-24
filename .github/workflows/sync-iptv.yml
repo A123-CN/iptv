@@ -5,187 +5,162 @@ on:
     - cron: '0 13 * * *'  # UTC 13:00 = 北京时间 21:00
   workflow_dispatch:
 
-permissions:
-  contents: write
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           persist-credentials: true
 
       - name: Update IPTV URLs
         run: |
-          set -euo pipefail
-          
           echo "=== 开始更新 IPTV 源 ==="
-          echo "时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+          echo "时间: $(date)"
           
+          # 安装 ffmpeg
+          echo "安装 ffmpeg..."
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
           
+          # 转换换行符
           sed -i 's/\r$//' iptv.txt
+          
+          # 备份原文件
           cp iptv.txt iptv.txt.bak
+          echo "原文件已备份"
+          
+          # 下载所有源并提取有效URL
+          echo "下载并解析各源..."
           
           > /tmp/all_urls.txt
           
-          download_source() {
-            local url="$1"
-            local tmp_file="/tmp/source_raw_$$"
-            
-            if ! curl -L --fail --connect-timeout 30 --max-time 60 "$url" -o "$tmp_file" 2>/dev/null; then
-              rm -f "$tmp_file"
-              return 1
-            fi
-            
-            tr -d '\r\n' < "$tmp_file" > "${tmp_file}.clean" && mv "${tmp_file}.clean" "$tmp_file"
-            
-            if head -n 5 "$tmp_file" | grep -qi '#EXTM3U\|#EXTINF'; then
-              echo "    🔄 检测到 M3U 格式，正在转换..."
-              awk '
-              /^#EXTINF:/ {
-                sub(/^#EXTINF:[^,]*,/, "")
-                gsub(/^[[:space:]]+|[[:space:]]+$/, "")
-                gsub(/"/, "")
-                gsub(/\n/, " ")
-                channel = $0
-                next
-              }
-              /^https?:\/\// {
-                if (channel != "") {
-                  print channel "," $0
-                  channel = ""
-                }
-              }
-              ' "$tmp_file" >> /tmp/all_urls.txt
-            else
-              grep -E '^[^#].+,https?://' "$tmp_file" >> /tmp/all_urls.txt 2>/dev/null || true
-            fi
-            
-            rm -f "$tmp_file"
-            return 0
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd" 2>/dev/null | \
+            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
+          
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.githubusercontent.com/CCSH/IPTV/main/live.txt" 2>/dev/null | \
+            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
+
+          curl -L --fail --connect-timeout 30 --max-time 60 \
+            "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/GNTV.m3u" 2>/dev/null | \
+            grep -E '^[^#].+,' >> /tmp/all_urls.txt 2>/dev/null || true
+          
+          echo "下载完成，共获取 $(wc -l < /tmp/all_urls.txt) 条记录"
+          
+          # 标准化频道名函数
+          normalize() {
+            echo "$1" | sed 's/-//g' | sed 's/ //g' | tr 'A-Z' 'a-z'
           }
           
-          SOURCES=(
-            "https://raw.giteeusercontent.com/zhanghuan12345/my-live/raw/master/hbyd"
-            "https://raw.giteeusercontent.com/yuweirong6684/tv-live-streaming-source/raw/master/abc.txt"
-            "https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/ipv4.txt"
-            "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/GNTV.m3u"
-          )
+          # URL 有效性检测函数
+          check_url() {
+            url=$1
+            timeout 8 ffprobe -v error -t 5 "$url" 2>/dev/null
+            return $?
+          }
           
-          for source in "${SOURCES[@]}"; do
-            echo "  下载: $source"
-            success=false
-            for i in {1..3}; do
-              if download_source "$source"; then
-                echo "    ✅ 下载成功"
-                success=true
-                break
-              else
-                echo "    ⚠️ 下载失败，重试 $i/3..."
-                sleep 5
+          # 构建频道->URL映射（只取有效且最优的一个）
+          > /tmp/url_map.txt
+          
+          grep -v '#genre#' iptv.txt | grep -v '^$' | sed 's/,$//' | while read template_channel; do
+            [ -z "$template_channel" ] && continue
+            
+            template_norm=$(normalize "$template_channel")
+            
+            best_url=""
+            best_priority=99
+            
+            while IFS=',' read -r source_channel source_url; do
+              source_norm=$(normalize "$source_channel")
+              
+              # 模糊匹配
+              if [ "$template_norm" = "$source_norm" ] || \
+                 echo "$source_norm" | grep -q "$template_norm" || \
+                 echo "$template_norm" | grep -q "$source_norm"; then
+                
+                # 优先级: http=1, rtsp=2, https=3
+                priority=99
+                if echo "$source_url" | grep -q '^http://'; then
+                  priority=1
+                elif echo "$source_url" | grep -q '^rtsp://'; then
+                  priority=2
+                elif echo "$source_url" | grep -q '^https://'; then
+                  priority=3
+                fi
+                
+                # 检测 URL 有效性
+                if check_url "$source_url"; then
+                  if [ $priority -lt $best_priority ]; then
+                    best_priority=$priority
+                    best_url="$source_url"
+                  fi
+                fi
               fi
-            done
-            if [ "$success" = false ]; then
-              echo "    ❌ 该源最终下载失败，已跳过"
+            done < /tmp/all_urls.txt
+            
+            if [ -n "$best_url" ]; then
+              # 只取第一个URL
+              first_url=$(echo "$best_url" | cut -d'#' -f1)
+              echo "$template_channel,$first_url" >> /tmp/url_map.txt
+              echo "  ✅ $template_channel -> $first_url"
+            else
+              echo "  ⚠️ 未找到有效URL: $template_channel"
             fi
           done
           
-          sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' /tmp/all_urls.txt
-          awk -F',' 'NF>=2 && $1!="" && $2~/^https?:\/\//' /tmp/all_urls.txt | sort -u > /tmp/all_urls_clean.txt
-          mv /tmp/all_urls_clean.txt /tmp/all_urls.txt
+          MATCH_COUNT=$(wc -l < /tmp/url_map.txt)
+          echo "匹配完成，共匹配 $MATCH_COUNT 个频道"
           
-          total_urls=$(wc -l < /tmp/all_urls.txt)
-          echo "下载完成，清洗后共获取 $total_urls 条有效记录"
+          # 更新 iptv.txt
+          echo "开始更新 iptv.txt..."
+          > iptv.txt.new
           
-          normalize() {
-            echo "$1" | tr -d '\n\r' | sed 's/[^a-zA-Z0-9\u4e00-\u9fa5]//g' | tr 'A-Z' 'a-z'
-          }
-          
-          declare -A source_map
-          while IFS=',' read -r channel url; do
-            norm_channel=$(normalize "$channel")
-            if [ -z "$norm_channel" ]; then continue; fi
-            if [ -z "${source_map[$norm_channel]:-}" ]; then
-              source_map["$norm_channel"]="$url"
-            fi
-          done < /tmp/all_urls.txt
-          
-          check_url() {
-            local url="$1"
-            if echo "$url" | grep -qE '://(10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.|207\.56\.)'; then
-              return 0
-            fi
-            timeout 8 ffprobe -v quiet -t 6 "$url" >/dev/null 2>&1
-          }
-          export -f check_url
-          
-          matched=0
-          total=0
-          > /tmp/check_tasks.txt
-          
-          # ✅ 关键修复：按模板格式处理 iptv.txt
           while IFS= read -r line; do
-            [[ -z "$line" ]] && continue
-            [[ "$line" =~ [[:cntrl:]] ]] && continue
-            
-            # 1. #genre# 行：原样输出
-            if [[ "$line" =~ ^[[:space:]]*[^#]*,[[:space:]]*#genre#[[:space:]]*$ ]]; then
-              echo "$line"
+            if echo "$line" | grep -q '#genre#'; then
+              echo "$line" >> iptv.txt.new
               continue
             fi
             
-            # 2. 纯频道名行：频道名,
-            if [[ "$line" =~ ^[^,]+,$ ]]; then
-              channel_name="${line%,}"
-              norm_name=$(normalize "$channel_name")
-              new_url=""
+            if echo "$line" | grep -q '^[^#].\+,$'; then
+              channel_name=$(echo "$line" | sed 's/,$//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
               
-              if [ -n "$norm_name" ] && [ -n "${source_map[$norm_name]:-}" ]; then
-                new_url="${source_map[$norm_name]}"
-              else
-                for src_norm in "${!source_map[@]}"; do
-                  if [[ "$src_norm" == "$norm_name"* ]] || [[ "$norm_name" == "$src_norm"* ]]; then
-                    new_url="${source_map[$src_norm]}"
-                    break
-                  fi
-                done
-              fi
+              url=$(grep "^$channel_name," /tmp/url_map.txt | head -1 | cut -d',' -f2-)
               
-              total=$((total + 1))
-              if [ -n "$new_url" ]; then
-                echo "${channel_name},${new_url}"
-                if check_url "$new_url"; then matched=$((matched + 1)); fi
+              if [ -n "$url" ]; then
+                echo "$channel_name,$url" >> iptv.txt.new
               else
-                echo "${channel_name},"
+                echo "$channel_name," >> iptv.txt.new
               fi
               continue
             fi
             
-            # 3. 已有 URL 的行：原样保留
-            if [[ "$line" =~ ^[^,]+,https?:// ]]; then
-              echo "$line"
-              continue
-            fi
-            
-            # 4. 兜底：未知格式，原样输出
-            echo "$line"
-          done < iptv.txt > iptv.txt.new
+            echo "$line" >> iptv.txt.new
+          done < iptv.txt
           
-          new_lines=$(wc -l < iptv.txt.new)
-          echo "匹配统计: $matched/$total 个频道成功匹配"
-          
-          if [ "$new_lines" -lt 50 ]; then
-            echo "❌ 错误: 生成文件行数过少 ($new_lines)"
-            cp iptv.txt.bak iptv.txt
+          NEW_LINES=$(wc -l < iptv.txt.new)
+          if [ "$NEW_LINES" -lt 50 ]; then
+            echo "❌ 错误: 生成文件行数过少 ($NEW_LINES)"
             exit 1
           fi
           
           mv iptv.txt.new iptv.txt
           echo "✅ 更新完成"
+
+      - name: Commit and Push
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add iptv.txt
+          
+          if git diff --cached --quiet; then
+            echo "✅ 内容无变化，跳过提交"
+            exit 0
+          fi
+          
+          git commit -m "Update IPTV URLs - $(date '+%Y-%m-%d %H:%M:%S')"
+          git pull --rebase --strategy-option ours
+          git push
+          echo "✅ 已成功推送到仓库"
