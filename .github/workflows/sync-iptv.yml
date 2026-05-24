@@ -35,7 +35,7 @@ jobs:
           
           > /tmp/all_urls.txt
           
-          # ✅ 核心修复：定义格式自适应下载函数
+          # ✅ 核心修复：定义格式自适应下载函数（含增强版 M3U 解析）
           download_source() {
             local url="$1"
             local tmp_file="/tmp/source_raw_$$"
@@ -48,12 +48,12 @@ jobs:
             # 自动检测是否为 M3U 格式
             if head -n 5 "$tmp_file" | grep -qi '#EXTM3U\|#EXTINF'; then
               echo "    🔄 检测到 M3U 格式，正在转换..."
-              # 将 M3U 转换为 "频道名,URL" 格式
+              # ✅ 增强版 AWK：完美剥离 group-title 等复杂属性及残留引号/空格
               awk '
                 /^#EXTINF:/ {
-                  # 提取逗号后面的频道名，去除首尾空白
                   sub(/^#EXTINF:[^,]*,/, "")
                   gsub(/^[[:space:]]+|[[:space:]]+$/, "")
+                  gsub(/"/, "")
                   channel = $0
                   next
                 }
@@ -65,7 +65,7 @@ jobs:
                 }
               ' "$tmp_file" >> /tmp/all_urls.txt
             else
-              # 标准 TXT/CSV 格式直接提取
+              # 标准 TXT/CSV 格式直接提取合法 URL
               grep -E '^[^#].+,https?://' "$tmp_file" >> /tmp/all_urls.txt 2>/dev/null || true
             fi
             
@@ -98,7 +98,7 @@ jobs:
             fi
           done
           
-          # 深度清洗脏数据，防止数组下标报错
+          # 🛡️ 三重防线：深度清洗脏数据，彻底杜绝 bad array subscript
           sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' /tmp/all_urls.txt
           awk -F',' 'NF>=2 && $1!="" && $2~/^https?:\/\//' /tmp/all_urls.txt | sort -u > /tmp/all_urls_clean.txt
           mv /tmp/all_urls_clean.txt /tmp/all_urls.txt
@@ -113,14 +113,21 @@ jobs:
           declare -A source_map
           while IFS=',' read -r channel url; do
             norm_channel=$(normalize "$channel")
+            # 🛡️ 安全兜底：跳过标准化后为空的频道名
             if [ -z "$norm_channel" ]; then continue; fi
             if [ -z "${source_map[$norm_channel]:-}" ]; then
               source_map["$norm_channel"]="$url"
             fi
           done < /tmp/all_urls.txt
           
+          # ✅ 优化：增加内网/局域网 IP 豁免逻辑
           check_url() {
-            timeout 8 ffprobe -v quiet -t 6 "$1" >/dev/null 2>&1
+            local url="$1"
+            # 匹配常见内网段及你提供的 207.56.x.x 组播转单播地址，直接视为有效
+            if echo "$url" | grep -qE '://(10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.|207\.56\.)'; then
+              return 0
+            fi
+            timeout 8 ffprobe -v quiet -t 6 "$url" >/dev/null 2>&1
           }
           export -f check_url
           
