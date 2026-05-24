@@ -1,3 +1,25 @@
+name: Sync IPTV Source
+
+on:
+  schedule:
+    - cron: '0 13 * * *'  # UTC 13:00 = 北京时间 21:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+
       - name: Update IPTV URLs
         run: |
           set -euo pipefail
@@ -27,20 +49,20 @@
             if head -n 5 "$tmp_file" | grep -qi '#EXTM3U\|#EXTINF'; then
               echo "    🔄 检测到 M3U 格式，正在转换..."
               awk '
-                /^#EXTINF:/ {
-                  sub(/^#EXTINF:[^,]*,/, "")
-                  gsub(/^[[:space:]]+|[[:space:]]+$/, "")
-                  gsub(/"/, "")
-                  gsub(/\n/, " ")
-                  channel = $0
-                  next
+              /^#EXTINF:/ {
+                sub(/^#EXTINF:[^,]*,/, "")
+                gsub(/^[[:space:]]+|[[:space:]]+$/, "")
+                gsub(/"/, "")
+                gsub(/\n/, " ")
+                channel = $0
+                next
+              }
+              /^https?:\/\// {
+                if (channel != "") {
+                  print channel "," $0
+                  channel = ""
                 }
-                /^https?:\/\// {
-                  if (channel != "") {
-                    print channel "," $0
-                    channel = ""
-                  }
-                }
+              }
               ' "$tmp_file" >> /tmp/all_urls.txt
             else
               grep -E '^[^#].+,https?://' "$tmp_file" >> /tmp/all_urls.txt 2>/dev/null || true
