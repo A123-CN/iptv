@@ -35,7 +35,6 @@ jobs:
           
           > /tmp/all_urls.txt
           
-          # ✅ 核心修复：定义格式自适应下载函数（含增强版 M3U 解析）
           download_source() {
             local url="$1"
             local tmp_file="/tmp/source_raw_$$"
@@ -45,15 +44,19 @@ jobs:
               return 1
             fi
             
-            # 自动检测是否为 M3U 格式
+            # ✅ 核心修复：全局强制去除所有回车符和换行符残留，防止污染后续逻辑
+            tr -d '\r' < "$tmp_file" > "${tmp_file}.clean"
+            mv "${tmp_file}.clean" "$tmp_file"
+            
             if head -n 5 "$tmp_file" | grep -qi '#EXTM3U\|#EXTINF'; then
               echo "    🔄 检测到 M3U 格式，正在转换..."
-              # ✅ 增强版 AWK：完美剥离 group-title 等复杂属性及残留引号/空格
               awk '
                 /^#EXTINF:/ {
                   sub(/^#EXTINF:[^,]*,/, "")
                   gsub(/^[[:space:]]+|[[:space:]]+$/, "")
                   gsub(/"/, "")
+                  # 防止频道名内部包含异常换行，强制替换为空格
+                  gsub(/\n/, " ")
                   channel = $0
                   next
                 }
@@ -65,7 +68,6 @@ jobs:
                 }
               ' "$tmp_file" >> /tmp/all_urls.txt
             else
-              # 标准 TXT/CSV 格式直接提取合法 URL
               grep -E '^[^#].+,https?://' "$tmp_file" >> /tmp/all_urls.txt 2>/dev/null || true
             fi
             
@@ -98,7 +100,7 @@ jobs:
             fi
           done
           
-          # 🛡️ 三重防线：深度清洗脏数据，彻底杜绝 bad array subscript
+          # 🛡️ 深度清洗：确保每一行都是严格的单行合法数据
           sed -i 's/^[[:space:]]*//;s/[[:space:]]*$//' /tmp/all_urls.txt
           awk -F',' 'NF>=2 && $1!="" && $2~/^https?:\/\//' /tmp/all_urls.txt | sort -u > /tmp/all_urls_clean.txt
           mv /tmp/all_urls_clean.txt /tmp/all_urls.txt
@@ -107,23 +109,21 @@ jobs:
           echo "下载完成，清洗后共获取 $total_urls 条有效记录"
           
           normalize() {
-            echo "$1" | sed 's/[^a-zA-Z0-9\u4e00-\u9fa5]//g' | tr 'A-Z' 'a-z'
+            # 增加对换行符的显式过滤
+            echo "$1" | tr -d '\n\r' | sed 's/[^a-zA-Z0-9\u4e00-\u9fa5]//g' | tr 'A-Z' 'a-z'
           }
           
           declare -A source_map
           while IFS=',' read -r channel url; do
             norm_channel=$(normalize "$channel")
-            # 🛡️ 安全兜底：跳过标准化后为空的频道名
             if [ -z "$norm_channel" ]; then continue; fi
             if [ -z "${source_map[$norm_channel]:-}" ]; then
               source_map["$norm_channel"]="$url"
             fi
           done < /tmp/all_urls.txt
           
-          # ✅ 优化：增加内网/局域网 IP 豁免逻辑
           check_url() {
             local url="$1"
-            # 匹配常见内网段及你提供的 207.56.x.x 组播转单播地址，直接视为有效
             if echo "$url" | grep -qE '://(10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.|207\.56\.)'; then
               return 0
             fi
@@ -136,8 +136,11 @@ jobs:
           > /tmp/check_tasks.txt
           
           while IFS= read -r line; do
-            if [[ "$line" =~ #genre# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^# ]]; then continue; fi
-            channel_name=$(echo "$line" | sed 's/,$//')
+            # ✅ 安全兜底：跳过包含换行符或空白的异常行
+            if [[ -z "$line" ]] || [[ "$line" =~ [[:cntrl:]] ]]; then continue; fi
+            if [[ "$line" == *"#genre#"* ]] || [[ "$line" == "#"* ]]; then continue; fi
+            
+            channel_name="${line%%,*}"
             norm_name=$(normalize "$channel_name")
             new_url=""
             
@@ -179,10 +182,10 @@ jobs:
           done < /tmp/check_results.txt
           
           while IFS= read -r line; do
-            if [[ "$line" =~ #genre# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^# ]]; then
-              echo "$line"; continue
-            fi
-            channel_name=$(echo "$line" | sed 's/,$//')
+            if [[ -z "$line" ]] || [[ "$line" =~ [[:cntrl:]] ]]; then echo "$line"; continue; fi
+            if [[ "$line" == *"#genre#"* ]] || [[ "$line" == "#"* ]]; then echo "$line"; continue; fi
+            
+            channel_name="${line%%,*}"
             if [ -n "${result_map[$channel_name]:-}" ]; then
               IFS='|' read -r final_url status <<< "${result_map[$channel_name]}"
               echo "$channel_name,$final_url"
