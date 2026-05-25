@@ -1,5 +1,5 @@
 更新时间,#genre#
-2026-05-25 02:06:45,http://1921681258888.ddnsto.com:5000/stream/index.m3u8
+2026-05-26 02:06:09,http://1921681258888.ddnsto.com:5000/stream/index.m3u8
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -299,7 +299,8 @@ TVB黄金华剧,http://iptv.4666888.xyz/iptv2A.php?id=34
 TVB黄金华剧,https://iptv.xmtv.qzz.io/?id=34
 TVB娱乐新闻,http://iptv.4666888.xyz/iptv2A.php?id=36
 TVB娱乐新闻,https://iptv.xmtv.qzz.io/?id=36
-TVB明珠,https://mytv.cdn.loc.cc/o12.php?id=mzt
+TVB明珠,http://iptv.4666888.xyz/iptv2A.php?id=29
+TVB明珠,https://iptv.xmtv.qzz.io/?id=29
 TVB明珠,https://o11.163189.xyz/stream/tvb/mzt/
 TVBPearl,http://mytv.cdn.loc.cc/o12.php?id=mzt
 TVBPearl,https://o11.163189.xyz/stream/tvb/mzt/
@@ -347,8 +348,10 @@ SPOTV,http://iptv.4666888.xyz/iptv2A.php?id=2
 SPOTV,https://iptv.xmtv.qzz.io/?id=2
 美亚电影,http://iptv.4666888.xyz/iptv2A.php?id=30
 美亚电影,https://iptv.xmtv.qzz.io/?id=30
-邵氏電影,http://38.75.136.137:98/gslb/dsdqpub/lbssdy.m3u8?auth=testpub
-邵氏武俠,http://38.75.136.137:98/gslb/dsdqpub/lbsswx.m3u8?auth=testpub
+邵氏電影,http://iptv.4666888.xyz/iptv2A.php?id=39
+邵氏電影,https://iptv.xmtv.qzz.io/?id=39
+邵氏武俠,http://iptv.4666888.xyz/iptv2A.php?id=40
+邵氏武俠,https://iptv.xmtv.qzz.io/?id=40
 千禧经典,http://iptv.4666888.xyz/iptv2A.php?id=22
 千禧经典,https://iptv.xmtv.qzz.io/?id=22
 千禧经典,https://o11.163189.xyz/stream/live/tvbc/
@@ -364,13 +367,13 @@ SPOTV,https://iptv.xmtv.qzz.io/?id=2
 中天亚洲台,http://fm1077.serv00.net/Smart.php?id=ctiasia_twn
 中天新闻,rtmp://demo2.anj365.com/live/xiangjiaoge-ztxw
 中视新闻,https://raw.githubusercontent.com/ChiSheng9/iptv/master/TV09.m3u8
-中视经典,http://74.91.26.218:82/live/ctvjd.m3u8
+中视经典,https://stream1.freetv.fun/zhong-shi-jing-dian-3.ctv
 澳视澳门,http://iptv.4666888.xyz/iptv2A.php?id=41
 澳视澳门,https://iptv.xmtv.qzz.io/?id=41
 靖洋戏剧,http://iptv.4666888.xyz/iptv2A.php?id=42
 靖洋戏剧,https://iptv.xmtv.qzz.io/?id=42
-民视台湾台,http://74.91.26.218:82/live/ftvtw.m3u8
-民视第一台,http://74.91.26.218:82/live/ftvdy.m3u8
+民视台湾台,http://fm1077.serv00.net/Smart.php?id=ftvtaiwan_twn
+民视第一台,http://fm1077.serv00.net/Smart.php?id=lunghuajingdian_twn
 公视戏剧,https://cdn12.178.indevs.in/163189/2973b910e7719c08
 东森综合,http://iptv.4666888.xyz/iptv2A.php?id=58
 东森综合,https://iptv.xmtv.qzz.io/?id=58
@@ -395,7 +398,7 @@ TVBS新闻,https://iptv.xmtv.qzz.io/?id=43
 民视,http://fm1077.serv00.net/Smart.php?id=ftvhd_taiwan
 民視綜藝,http://iptv.4666888.xyz/iptv2A.php?id=46
 民視綜藝,https://iptv.xmtv.qzz.io/?id=46
-华视新闻,http://74.91.26.218:82/live/ctsnews.m3u8
+华视新闻,https://stream1.freetv.fun/hua-shi-2.m3u8
 纬来日本台,http://fm1077.serv00.net/Smart.php?id=videolandjapan
 靖天国际,https://test.946985.filegear-sg.me/proxy/61ead71226c49dbd
 靖天映画,http://breezy-audrie-zspace-7524863c.koyeb.app/vipsir?token=leifeng&id=4gtv-4gtv055
@@ -412,7 +415,7 @@ TVBS新闻,https://iptv.xmtv.qzz.io/?id=43
 龙华电影,http://iptv.4666888.xyz/iptv2A.php?id=45
 龙华电影,https://iptv.xmtv.qzz.io/?id=45
 龙华经典,https://cdn8.163189.xyz/163189/lhjd
-台视新闻台,http://74.91.26.218:82/live/ttvnews.m3u8
+台视新闻台,http://fm1077.serv00.net/Smart.php?id=ttvnews_twn
 台视综合,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
 台视,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
 TVBS新闻台,http://61.221.215.25:8800/hls/9/index.m3u8
@@ -424,4 +427,5 @@ TVBS精采,http://iptv.4666888.xyz/iptv2A.php?id=47
 TVBS精采,https://iptv.xmtv.qzz.io/?id=47
 TVBS,http://208.87.201.148/livehttpplay?channel_id=20085
 ViuTV,https://cdn.163189.xyz/163189/viu
+HBO,http://104.250.145.76/livehttpplay?channel_id=23356
 HBO,http://23.237.104.106:8080/USA_HBO/tracks-v1a1/mono.m3u8
