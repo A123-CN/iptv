@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:06:03/02:08:11,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
+2026:06:04/02:04:35,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -102,7 +102,6 @@ CCTV-15,http://39.165.39.49:85/tsfile/live/1086_1.m3u8?key=txiptv&playlive=1&aut
 CCTV-15,http://111.228.4.117:6789/migu720p.php?id=673168223
 CCTV-15,http://61.178.227.57:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
 
-CCTV-16,https://live.264788.xyz/channel/cctv16?streamid=cc85018b83212f71155d47ecd19d745e&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
 CCTV-16,http://183.129.255.66:8480/hls/17/index.m3u8
 
 CCTV-17,http://60.10.139.113:8801/hls/98/index.m3u8
@@ -282,13 +281,11 @@ CCTV-17,http://111.228.4.117:6789/migu720p.php?id=673168256
 新疆卫视,http://58.56.162.102:4466/newlive/live/hls/44/live.m3u8
 
 西藏卫视,http://61.178.227.57:9901/tsfile/live/0111_1.m3u8?key=txiptv&playlive=1&authid=0
-西藏卫视,https://live.264788.xyz/channel/xizangweishi?streamid=cfb7b8b8dcaf7ff92d4c1476cf321ba7&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
 
 延边卫视,https://srs.iyb983.cn:443/video/CYS/index.m3u8
 延边卫视,https://srs.iyb983.cn/video/CYS/index.m3u8
 
 兵团卫视,http://61.178.227.57:9901/tsfile/live/0115_1.m3u8?key=txiptv&playlive=1&authid=0
-兵团卫视,https://live.264788.xyz/channel/bingtuanweishi?streamid=ec8c0353332f89d571192f8854d06c1f&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
 
 黑龙江卫视,http://1.31.14.70:54321/hls/15/index.m3u8
 黑龙江卫视,http://www.liyajun.top:7088/rtp/239.253.92.85:8016
@@ -463,9 +460,8 @@ CETV4,http://111.48.34.138/000000001000PLTV/88888888/224/3221230489/1.m3u8
 凤凰中文,http://cdn6.163189.xyz/163189/fhzw
 凤凰中文,https://cdn6.163189.xyz/163189/fhzw
 凤凰中文,http://r.jdshipin.com/cCCzW
-凤凰中文,http://iptv.4666888.xyz/iptv2A.php?id=27
-凤凰中文,http://183.237.95.108:9901/tsfile/live/1103_1.m3u8?key=txiptv&playlive=0&authid=0
 凤凰中文,http://zmgd.zyrnet.com:8888/hls/110/index.m3u8
+凤凰中文,http://183.237.95.108:9901/tsfile/live/1103_1.m3u8?key=txiptv&playlive=0&authid=0
 凤凰中文,http://218.104.239.114:9901/tsfile/live/1013_1.m3u8?key=txiptv
 凤凰资讯,http://cdn6.163189.xyz/163189/fhzx
 凤凰资讯,https://cdn6.163189.xyz/163189/fhzx
