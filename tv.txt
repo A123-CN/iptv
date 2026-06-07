@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:06:06/02:22:16,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
+2026:06:07/02:04:18,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -102,6 +102,7 @@ CCTV-15,http://39.165.39.49:85/tsfile/live/1086_1.m3u8?key=txiptv&playlive=1&aut
 CCTV-15,http://111.228.4.117:6789/migu720p.php?id=673168223
 CCTV-15,http://61.178.227.57:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
 
+CCTV-16,https://live.264788.xyz/channel/cctv16?streamid=cc85018b83212f71155d47ecd19d745e&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
 CCTV-16,http://183.129.255.66:8480/hls/17/index.m3u8
 
 CCTV-17,http://60.10.139.113:8801/hls/98/index.m3u8
@@ -367,7 +368,7 @@ CHC影迷电影,rtsp://111.48.34.138:1554/170000004112/9918000100000005000000000
 CHC影迷电影,http://111.48.34.138/000000001000PLTV/88888888/224/3221230483/1.m3u8
 CHC华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
 1905电影,https://cdn.jdshipin.com/1905.php
-1905电影,http://8.138.7.223/tv/1905.php?id=LIVE8J4LTCXPI7QJ5
+1905电影,http://php.jdshipin.com/1905.php
 重温经典,http://8.138.7.223/tv/cwjd.php
 重温经典,http://cdn6.163189.xyz/163189/cwjd
 重温经典,http://112.27.235.94:8000/hls/50/index.m3u8
@@ -483,7 +484,7 @@ CETV4,http://111.48.34.138/000000001000PLTV/88888888/224/3221230489/1.m3u8
 凤凰电影,http://hao6688.3322.org:30066/stream/channelid/1776639112?ticket=1702a2c002bcd734ff936cd6c06c359b489b63c4&profile=pass
 星空卫视,http://122.224.58.42:85/tsfile/live/1024_1.m3u8?key=txiptv&playlive=1&authid=0
 TVB星河,https://o11.163189.xyz/stream/live/tvbxh/
-TVB星河,http://hao6688.3322.org:30066/stream/channelid/1315612664?ticket=9bd63760500854dae5d5c3bcc62975495aac417d&profile=pass
+TVB星河,http://r.jdshipin.com/Voac4
 TVB星河,http://o11.163189.xyz/stream/live/tvbxh/
 TVB星河,http://cdn6.163189.xyz/163189/tvbxh
 TVB翡翠台,http://mytv.cdn.loc.cc/o12.php?id=fct
@@ -544,7 +545,7 @@ RTHK32,http://cdn.163189.xyz/163189/rthk32
 RTHK33,http://cdn6.163189.xyz/163189/cctv1
 HOY77,http://iptv.4666888.xyz/iptv2A.php?id=35
 HOY77,https://iptv.xmtv.qzz.io/?id=35
-HOY78,http://huhu11.a1.luyouxia.net:26894/play/电视家/电视家.php?id=20079
+HOY78,https://cdn.163189.xyz/163189/hoy78
 TENNIS,http://iptv.4666888.xyz/iptv2A.php?id=62
 TENNIS,https://iptv.xmtv.qzz.io/?id=62
 ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
@@ -614,7 +615,6 @@ TVBS新闻,https://iptv.xmtv.qzz.io/?id=43
 靖天电影,https://iptv.xmtv.qzz.io/?id=56
 纬来电影,http://iptv.4666888.xyz/iptv2A.php?id=54
 纬来电影,https://iptv.xmtv.qzz.io/?id=54
-天映经典,http://huhu11.a1.luyouxia.net:26894/play/电视家/电视家.php?id=20115
 天映经典,https://o11.163189.xyz/stream/live/ccm/
 天映频道,http://o11.163189.xyz/stream/live/typd
 天映频道,http://huhu11.a1.luyouxia.net:26894/play/电视家/电视家.php?id=20117
