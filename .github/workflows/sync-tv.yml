@@ -1,9 +1,9 @@
 name: Sync IPTV Source
 
 on:
-  # 每天凌晨 3:30 (UTC+8) 自动执行
+  # 每天凌晨 2:30 (UTC+8) 自动执行
   schedule:
-    - cron: '30 14 * * *'
+    - cron: '30 15 * * *'
   # 允许在 Actions 页面手动点击运行测试
   workflow_dispatch:
 
