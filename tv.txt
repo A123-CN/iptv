@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:06:09/02:04:55,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
+2026:06:11/01:04:50,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -219,7 +219,6 @@ CCTV-17,http://111.228.4.117:6789/migu720p.php?id=673168256
 
 广东卫视,http://39.165.39.49:19901/tsfile/live/1131_1.m3u8?key=txiptv&playlive=0&authid=0
 广东卫视,http://120.198.95.220:9901/tsfile/live/1006_1.m3u8?key=txiptv
-广东珠江,http://120.198.95.220:9901/tsfile/live/1007_1.m3u8?key=txiptv
 
 广西卫视,http://60.10.139.113:8801/hls/52/index.m3u8
 广西卫视,http://222.223.41.27:8888/hls/46/index.m3u8
@@ -484,9 +483,8 @@ CETV4,http://111.48.34.138/000000001000PLTV/88888888/224/3221230489/1.m3u8
 凤凰电影,http://hao6688.3322.org:30066/stream/channelid/1776639112?ticket=1702a2c002bcd734ff936cd6c06c359b489b63c4&profile=pass
 星空卫视,http://122.224.58.42:85/tsfile/live/1024_1.m3u8?key=txiptv&playlive=1&authid=0
 TVB星河,https://o11.163189.xyz/stream/live/tvbxh/
-TVB星河,http://r.jdshipin.com/Voac4
-TVB星河,http://o11.163189.xyz/stream/live/tvbxh/
 TVB星河,http://cdn6.163189.xyz/163189/tvbxh
+TVB星河,http://o11.163189.xyz/stream/live/tvbxh/
 TVB翡翠台,http://mytv.cdn.loc.cc/o12.php?id=fct
 TVB翡翠台,https://o11.163189.xyz/stream/tvb/fct/
 TVB翡翠台,http://r.jdshipin.com/GeWKr?id=fct406
@@ -550,8 +548,6 @@ TENNIS,http://iptv.4666888.xyz/iptv2A.php?id=62
 TENNIS,https://iptv.xmtv.qzz.io/?id=62
 ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
 ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
-SPOTV2,http://iptv.4666888.xyz/iptv2A.php?id=1
-SPOTV2,https://iptv.xmtv.qzz.io/?id=1
 美亚电影,http://iptv.4666888.xyz/iptv2A.php?id=30
 美亚电影,https://iptv.xmtv.qzz.io/?id=30
 邵氏电影,http://38.75.136.137:98/gslb/dsdqpub/lbssdy.m3u8?auth=testpub
