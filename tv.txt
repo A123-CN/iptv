@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:06:12/01:06:37,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
+2026:06:13/01:05:39,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -268,7 +268,7 @@ CCTV-17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
 河南卫视,http://60.10.139.113:8801/hls/32/index.m3u8
 河南卫视,http://39.165.39.49:19901/tsfile/live/1105_1.m3u8?key=txiptv&playlive=0&authid=0
 河南卫视,http://1.94.31.214/php/hntv.php?id=hnws
-河南卫视,http://tvcdn.stream3.hndt.com/tv/65c4a6d5017e1000b2b6ea2500000000_transios/playlist.m3u8?wsSecret=7d436a21f37e28a582867374d5f3f121&wsTime=1781200841
+河南卫视,http://111.228.4.117:6789/migu720p.php?id=790187291
 
 河北卫视,http://60.10.139.113:8801/hls/16/index.m3u8
 河北卫视,http://222.223.41.27:8888/hls/16/index.m3u8
@@ -483,7 +483,7 @@ CETV4,http://111.48.34.138/000000001000PLTV/88888888/224/3221230489/1.m3u8
 凤凰电影,http://hao6688.3322.org:30066/stream/channelid/1776639112?ticket=1702a2c002bcd734ff936cd6c06c359b489b63c4&profile=pass
 星空卫视,http://122.224.58.42:85/tsfile/live/1024_1.m3u8?key=txiptv&playlive=1&authid=0
 TVB星河,https://o11.163189.xyz/stream/live/tvbxh/
-TVB星河,http://r.jdshipin.com/Voac4
+TVB星河,http://hao6688.3322.org:30066/stream/channelid/1315612664?ticket=9bd63760500854dae5d5c3bcc62975495aac417d&profile=pass
 TVB星河,http://o11.163189.xyz/stream/live/tvbxh/
 TVB星河,http://cdn6.163189.xyz/163189/tvbxh
 TVB翡翠台,http://mytv.cdn.loc.cc/o12.php?id=fct
@@ -506,7 +506,8 @@ TVB黄金华剧,http://iptv.4666888.xyz/iptv2A.php?id=34
 TVB黄金华剧,https://iptv.xmtv.qzz.io/?id=34
 TVB娱乐新闻,http://iptv.4666888.xyz/iptv2A.php?id=36
 TVB娱乐新闻,https://iptv.xmtv.qzz.io/?id=36
-TVB明珠,http://r.jdshipin.com/jUx8K
+TVB明珠,http://iptv.4666888.xyz/iptv2A.php?id=29
+TVB明珠,https://iptv.xmtv.qzz.io/?id=29
 TVB明珠,https://o11.163189.xyz/stream/tvb/mzt/
 TVBPearl,http://mytv.cdn.loc.cc/o12.php?id=mzt
 TVBPearl,https://o11.163189.xyz/stream/tvb/mzt/
@@ -543,7 +544,7 @@ RTHK32,http://cdn.163189.xyz/163189/rthk32
 RTHK33,http://cdn6.163189.xyz/163189/cctv1
 HOY77,http://iptv.4666888.xyz/iptv2A.php?id=35
 HOY77,https://iptv.xmtv.qzz.io/?id=35
-HOY78,https://cdn.163189.xyz/163189/hoy78
+HOY78,http://huhu11.a1.luyouxia.net:26894/play/电视家/电视家.php?id=20079
 TENNIS,http://iptv.4666888.xyz/iptv2A.php?id=62
 TENNIS,https://iptv.xmtv.qzz.io/?id=62
 ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
