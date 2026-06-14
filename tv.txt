@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:06:13/01:05:39,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
+2026:06:14/01:06:45,http://192168125.ddnsto.com:5000/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -578,6 +578,7 @@ ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
 公视戏剧,https://cdn12.178.indevs.in/163189/2973b910e7719c08
 东森综合,http://iptv.4666888.xyz/iptv2A.php?id=58
 东森综合,https://iptv.xmtv.qzz.io/?id=58
+东森新闻,http://rihou.cc:555/tv/东森新闻
 东森电影,http://iptv.4666888.xyz/iptv2A.php?id=48
 东森电影,https://iptv.xmtv.qzz.io/?id=48
 东森超视,http://38.64.72.148:80/hls/modn/list/2013/chunklist0.m3u8#rtmp://f13h.mine.nu/sat/tv331
@@ -589,16 +590,16 @@ TVBS新闻,https://iptv.xmtv.qzz.io/?id=43
 民视影剧,http://iptv.4666888.xyz/iptv2A.php?id=53
 民视影剧,https://iptv.xmtv.qzz.io/?id=53
 超视,http://38.64.72.148:80/hls/modn/list/2013/chunklist1.m3u8
-中视,https://iptv.852851.xyz/ch/177f5903c7e4ae806ba85f66cb9a47e9/master.m3u8
+中视,http://rihou.cc:555/tv/[mn]中视闽南
 中视,https://test.946985.filegear-sg.me/proxy/4352f1616e15127a
 华视,http://74.91.26.218:82/live/cts.m3u8
 华视,https://raw.githubusercontent.com/ChiSheng9/iptv/master/TV12.m3u8
-公视,http://fm1077.serv00.net/Smart.php?id=ctv_taiwan
+公视,http://rihou.cc:555/tv/[mn]公视闽南
 民视,http://37.27.111.214:8080/live/6/hls.m3u8
-民视,http://fm1077.serv00.net/Smart.php?id=ftvhd_taiwan
+民视,http://rihou.cc:555/tv/[mn]民视闽南
 民视,http://74.91.26.218:82/live/ftv.m3u8
-民视,http://iptv.4666888.xyz/iptv2A.php?id=55
 中视,http://74.91.26.218:82/live/ctv.m3u8
+华视,http://rihou.cc:555/tv/[mn]华视闽南
 公视,http://74.91.26.218:82/live/pts.m3u8
 民視綜藝,http://iptv.4666888.xyz/iptv2A.php?id=46
 民視綜藝,https://iptv.xmtv.qzz.io/?id=46
@@ -622,10 +623,10 @@ TVBS新闻,https://iptv.xmtv.qzz.io/?id=43
 龙华电影,http://iptv.4666888.xyz/iptv2A.php?id=45
 龙华电影,https://iptv.xmtv.qzz.io/?id=45
 龙华经典,https://cdn8.163189.xyz/163189/lhjd
-台视新闻,http://fm1077.serv00.net/Smart.php?id=ttvnews_twn
+台视新闻,http://rihou.cc:555/tv/[mn]台视新闻
 台视新闻,http://74.91.26.218:82/live/ttvnews.m3u8
-台视综合,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
-台视,http://fm1077.serv00.net/Smart.php?id=ttv_taiwan
+台视综合,http://rihou.cc:555/tv/[mn]台视闽南
+台视,http://rihou.cc:555/tv/[mn]台视闽南
 台视,http://74.91.26.218:82/live/ttv.m3u8
 TVBS新闻,http://61.221.215.25:8800/hls/9/index.m3u8
 TVBS新闻,http://iptv.4666888.xyz/iptv2A.php?id=43
