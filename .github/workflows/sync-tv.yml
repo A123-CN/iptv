@@ -23,7 +23,7 @@ jobs:
           echo "⬇️ 正在从源地址获取数据..."
           curl -fSL --connect-timeout 15 --max-time 60 \
             -o tv.txt \
-            "http://192168125.ddnsto.com:5000/tv.txt"
+            "https://192168125.ddnsto.com:443/tv.txt"
           
           if [ ! -s tv.txt ]; then
             echo "❌ 下载失败或文件为空，终止同步"
