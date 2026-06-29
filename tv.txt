@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:06:28/01:15:03,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
+2026:06:30/01:12:44,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -76,7 +76,7 @@ CCTV-8,http://61.178.227.57:9901/tsfile/live/0008_1.m3u8?key=txiptv&playlive=1&a
 
 CCTV-9,http://39.165.39.49:19901/tsfile/live/1009_1.m3u8?key=txiptv&playlive=0&authid=0
 CCTV-9,http://39.165.39.49:85/tsfile/live/1009_1.m3u8?key=txiptv&playlive=1&authid=0
-CCTV-9,https://live.chinacert.cftest5.cn/cnmg/live/673168140
+CCTV-9,http://111.228.4.117:6789/migu720p.php?id=673168140
 
 CCTV-10,http://1.24.39.180:808/hls/10/index.m3u8
 CCTV-10,http://60.10.139.113:8801/hls/10/index.m3u8
@@ -88,7 +88,7 @@ CCTV-11,http://60.10.139.113:8801/hls/96/index.m3u8
 
 CCTV-12,http://39.165.39.49:19901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=0&authid=0
 CCTV-12,http://39.165.39.49:85/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
-CCTV-12,https://live.chinacert.cftest5.cn/cnmg/live/673168185
+CCTV-12,http://111.228.4.117:6789/migu720p.php?id=673168185
 
 CCTV-13,http://ali-m-l.cztv.com/channels/lantian/channel21/1080p.m3u8
 CCTV-13,http://39.165.39.49:19901/tsfile/live/1084_1.m3u8?key=txiptv&playlive=0&authid=0
@@ -99,7 +99,7 @@ CCTV-14,http://39.165.39.49:85/tsfile/live/1085_1.m3u8?key=txiptv&playlive=1&aut
 
 CCTV-15,http://39.165.39.49:19901/tsfile/live/1086_1.m3u8?key=txiptv&playlive=0&authid=0
 CCTV-15,http://39.165.39.49:85/tsfile/live/1086_1.m3u8?key=txiptv&playlive=1&authid=0
-CCTV-15,https://live.chinacert.cftest5.cn/cnmg/live/673168223
+CCTV-15,http://111.228.4.117:6789/migu720p.php?id=673168223
 CCTV-15,http://61.178.227.57:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
 
 CCTV-16,https://live.264788.xyz/channel/cctv16?streamid=cc85018b83212f71155d47ecd19d745e&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
@@ -108,7 +108,7 @@ CCTV-16,http://183.129.255.66:8480/hls/17/index.m3u8
 CCTV-17,http://60.10.139.113:8801/hls/98/index.m3u8
 CCTV-17,http://39.165.39.49:19901/tsfile/live/1088_1.m3u8?key=txiptv&playlive=0&authid=0
 CCTV-17,http://39.165.39.49:85/tsfile/live/1088_1.m3u8?key=txiptv&playlive=1&authid=0
-CCTV-17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
+CCTV-17,http://1.24.39.180:808/hls/61/index.m3u8
 
 卫视频道,#genre#
 湖北卫视,rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000194
@@ -222,7 +222,7 @@ CCTV-17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
 
 广西卫视,http://60.10.139.113:8801/hls/52/index.m3u8
 广西卫视,http://222.223.41.27:8888/hls/46/index.m3u8
-广西卫视,http://www.liyajun.top:7088/rtp/239.253.92.76:8043
+广西卫视,https://hlscdn.liangtv.cn/live/de0f97348eb84f62aa6b7d8cf0430770/dd505d87880c478f901f38560ca4d4e6.m3u8
 
 重庆卫视,http://60.10.139.113:8801/hls/31/index.m3u8
 重庆卫视,http://61.178.227.57:9901/tsfile/live/0142_2.m3u8?key=txiptv&playlive=1&authid=0
@@ -268,7 +268,7 @@ CCTV-17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
 河南卫视,http://60.10.139.113:8801/hls/32/index.m3u8
 河南卫视,http://39.165.39.49:19901/tsfile/live/1105_1.m3u8?key=txiptv&playlive=0&authid=0
 河南卫视,http://1.94.31.214/php/hntv.php?id=hnws
-河南卫视,http://111.228.4.117:6789/migu720p.php?id=790187291
+河南卫视,http://tvcdn.stream3.hndt.com/tv/65c4a6d5017e1000b2b6ea2500000000_transios/playlist.m3u8?wsSecret=7f5eeb8c6b23aff483efb297e5f78ad9&wsTime=1782755940
 
 河北卫视,http://60.10.139.113:8801/hls/16/index.m3u8
 河北卫视,http://222.223.41.27:8888/hls/16/index.m3u8
@@ -289,8 +289,7 @@ CCTV-17,https://live.chinacert.cftest5.cn/cnmg/live/673168256
 兵团卫视,http://61.178.227.57:9901/tsfile/live/0115_1.m3u8?key=txiptv&playlive=1&authid=0
 兵团卫视,https://live.264788.xyz/channel/bingtuanweishi?streamid=ec8c0353332f89d571192f8854d06c1f&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
 
-黑龙江卫视,http://1.31.14.70:54321/hls/15/index.m3u8
-黑龙江卫视,http://www.liyajun.top:7088/rtp/239.253.92.85:8016
+黑龙江卫视,http://l.cztvcloud.com/channels/lantian/SXyuyao3/720p.m3u8
 
 内蒙古卫视,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000148
 
@@ -428,20 +427,22 @@ iHOT爱院线HD,http://182.135.66.163:18888/rtp/239.94.1.132:5140
 华数4K,http://114.254.36.246:8888/rtp/239.3.1.236:2000$北京联通11
 华数4K,http://114.254.86.222:8888/rtp/239.3.1.236:2000$北京联通21
 华数4K,http://221.220.128.207:8012/rtp/239.3.1.236:2000$北京联通31
-华数星影,http://114.254.185.98:8099/rtp/239.3.1.94:4120
-华数动作影院,http://114.254.185.98:8099/rtp/239.3.1.92:4120
-华数喜剧影院,http://114.254.185.98:8099/rtp/239.3.1.91:4120
-华数家庭影院,http://114.254.185.98:8099/rtp/239.3.1.93:4120
-华数经典电影,http://114.254.185.98:8099/rtp/239.3.1.195:9024
-华数热播剧场,http://114.254.185.98:8099/rtp/239.3.1.194:9020
+华数星影,http://222.128.26.62:4001/rtp/239.3.1.94:4120
+华数动作影院,http://222.128.26.62:4001/rtp/239.3.1.92:4120
+华数动作影院,http://114.254.86.222:8888/rtp/239.3.1.92:4120$北京联通21
+华数动作影院,http://221.220.128.207:8012/rtp/239.3.1.92:4120$北京联通31
+华数喜剧影院,http://222.128.26.62:4001/rtp/239.3.1.91:4120
+华数家庭影院,http://222.128.26.62:4001/rtp/239.3.1.93:4120
+华数经典电影,http://222.128.26.62:4001/rtp/239.3.1.195:9024
+华数热播剧场,http://222.128.26.62:4001/rtp/239.3.1.194:9020
 华数碟战剧场,http://220.176.218.173:9000/rtp/239.252.220.145:5140$江西电信11
-华数军旅剧场,http://114.254.185.98:8099/rtp/239.3.1.68:4120
-华数城市剧场,http://114.254.185.98:8099/rtp/239.3.1.67:4120
-华数武侠剧场,http://114.254.185.98:8099/rtp/239.3.1.90:4120
+华数军旅剧场,http://222.128.26.62:4001/rtp/239.3.1.68:4120
+华数城市剧场,http://222.128.26.62:4001/rtp/239.3.1.67:4120
+华数武侠剧场,http://222.128.26.62:4001/rtp/239.3.1.90:4120
 华数古装剧场,http://220.176.218.173:9000/rtp/239.252.220.77:5140$江西电信11
-华数魅力时尚,http://114.254.185.98:8099/rtp/239.3.1.196:9012
-华数少儿动画,http://114.254.185.98:8099/rtp/239.3.1.199:9000
-华数动画,http://114.254.185.98:8099/rtp/239.3.1.80:4120
+华数魅力时尚,http://222.128.26.62:4001/rtp/239.3.1.196:9012
+华数少儿动画,http://222.128.26.62:4001/rtp/239.3.1.199:9000
+华数动画,http://222.128.26.62:4001/rtp/239.3.1.80:4120
 CETV1,rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000342
 CETV2,rtsp://111.48.34.138:1554/170000004112/00005000000000000000000000000251
 CETV4,rtsp://111.48.34.138:1554/170000004112/00005000000000000000000000000252
@@ -684,7 +685,7 @@ TVBS新闻,https://iptv.xmtv.qzz.io/?id=43
 龙华洋片,https://stream1.freetv.fun/50dbebf9da6dd967fc756d63c13404595924651e2b5ba6d99039e932466b0620.ctv
 龙华洋片,http://iptv.4666888.xyz/iptv2A.php?id=60
 龙华电影,https://cdn8.163189.xyz/163189/lhdy
-龙华电影,http://iptv.4666888.xyz/iptv2A.php?id=45
+龙华电影,http://cdn8.163189.xyz/163189/lhdy
 龙华电影,https://stream1.freetv.fun/f3e4792919e603bd0eb00254eb263931dbab92a22578853745d8dbe977714338.ctv
 龙华电影,https://iptv.xmtv.qzz.io/?id=45
 龙华经典,https://stream1.freetv.fun/c2275b572ec49684dc532efc606c5f6b264581f346379559e72ec2137c1ecb1d.ctv
