@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:07:03/23:18:14,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
+2026:07:04/14:10:07,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -99,7 +99,7 @@ CCTV-14,http://39.165.39.49:85/tsfile/live/1085_1.m3u8?key=txiptv&playlive=1&aut
 
 CCTV-15,http://39.165.39.49:19901/tsfile/live/1086_1.m3u8?key=txiptv&playlive=0&authid=0
 CCTV-15,http://39.165.39.49:85/tsfile/live/1086_1.m3u8?key=txiptv&playlive=1&authid=0
-CCTV-15,https://live.chinacert.cftest5.cn/cnmg/live/673168223
+CCTV-15,http://111.228.4.117:6789/migu720p.php?id=673168223
 CCTV-15,http://61.178.227.57:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
 
 CCTV-16,https://live.264788.xyz/channel/cctv16?streamid=cc85018b83212f71155d47ecd19d745e&livekey=01WgOR41rriMmMkzNsd0UoaxJRwetZdxIvtVk
@@ -369,6 +369,7 @@ CHC华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
 1905电影,https://cdn.jdshipin.com/1905.php
 1905电影,http://8.138.7.223/tv/1905.php?id=LIVE8J4LTCXPI7QJ5
 重温经典,http://8.138.7.223/tv/cwjd.php
+重温经典,http://cdn6.163189.xyz/163189/cwjd
 重温经典,http://112.27.235.94:8000/hls/50/index.m3u8
 重温经典,http://61.182.24.170:8080/live/xiangjiao-cwjd.m3u8
 中国电影,http://iptv.4666888.xyz/iptv2A.php?id=61
@@ -432,21 +433,20 @@ iHOT爱院线HD,http://182.135.66.163:18888/rtp/239.94.1.132:5140
 华数4K,http://114.254.36.246:8888/rtp/239.3.1.236:2000$北京联通11
 华数4K,http://114.254.86.222:8888/rtp/239.3.1.236:2000$北京联通21
 华数4K,http://221.220.128.207:8012/rtp/239.3.1.236:2000$北京联通31
-华数星影,http://114.254.185.98:8099/rtp/239.3.1.94:4120
-华数动作影院,http://114.254.185.98:8099/rtp/239.3.1.92:4120
-华数喜剧影院,http://114.254.185.98:8099/rtp/239.3.1.91:4120
-华数家庭影院,http://114.254.185.98:8099/rtp/239.3.1.93:4120
-华数经典电影,http://114.254.185.98:8099/rtp/239.3.1.195:9024
-华数热播剧场,http://114.254.185.98:8099/rtp/239.3.1.194:9020
-华数热播剧场,http://114.254.36.246:8888/rtp/239.3.1.194:9020$北京联通11
+华数星影,http://221.219.104.6:1193/rtp/239.3.1.94:4120
+华数动作影院,http://221.219.104.6:1193/rtp/239.3.1.92:4120
+华数喜剧影院,http://221.219.104.6:1193/rtp/239.3.1.91:4120
+华数家庭影院,http://221.219.104.6:1193/rtp/239.3.1.93:4120
+华数经典电影,http://221.219.104.6:1193/rtp/239.3.1.195:9024
+华数热播剧场,http://221.219.104.6:1193/rtp/239.3.1.194:9020
 华数碟战剧场,http://220.176.218.173:9000/rtp/239.252.220.145:5140$江西电信11
-华数军旅剧场,http://114.254.185.98:8099/rtp/239.3.1.68:4120
-华数城市剧场,http://114.254.185.98:8099/rtp/239.3.1.67:4120
-华数武侠剧场,http://114.254.185.98:8099/rtp/239.3.1.90:4120
+华数军旅剧场,http://221.219.104.6:1193/rtp/239.3.1.68:4120
+华数城市剧场,http://221.219.104.6:1193/rtp/239.3.1.67:4120
+华数武侠剧场,http://221.219.104.6:1193/rtp/239.3.1.90:4120
 华数古装剧场,http://220.176.218.173:9000/rtp/239.252.220.77:5140$江西电信11
-华数魅力时尚,http://114.254.185.98:8099/rtp/239.3.1.196:9012
-华数少儿动画,http://114.254.185.98:8099/rtp/239.3.1.199:9000
-华数动画,http://114.254.185.98:8099/rtp/239.3.1.80:4120
+华数魅力时尚,http://221.219.104.6:1193/rtp/239.3.1.196:9012
+华数少儿动画,http://221.219.104.6:1193/rtp/239.3.1.199:9000
+华数动画,http://221.219.104.6:1193/rtp/239.3.1.80:4120
 CETV1,rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000342
 CETV2,rtsp://111.48.34.138:1554/170000004112/00005000000000000000000000000251
 CETV4,rtsp://111.48.34.138:1554/170000004112/00005000000000000000000000000252
@@ -524,6 +524,9 @@ CH8综合Pdtv,http://rihou.cc:555/tv/[Pd]CH8综合
 
 凤凰中文,rtsp://111.48.37.20:1556/170000004112/HBGD1097583753909997568843788306?rrsip=111.48.35.131:1556&zoneoffset=480&icpid=112&tenantId=8601&AuthInfo=Vf2vkwi2SJSvrOhtFS75ZSlRGiGt6wIkwPciP1%2Fd8MZXn1ifp86%2FCruJAEhnzXwYRfyAM4%2FoJlCRV3l6Jtaw%2FIPqxBLzZ51k%2Faae28I%2F1%2Bg%3D&version=1.0&accountinfo=%2C2448539%2C117.152.22.169%2C20251226202038%2CHBGD1097583753909997568843788306%2C2448539%2C-1%2C0%2C1%2C%2C%2C2%2C%2C%2C%2C2%2C%2C564949886%2CEND#
 凤凰中文,http://120.198.84.146:9901/tsfile/live/1053_1.m3u8
+凤凰中文,http://cdn6.163189.xyz/163189/fhzw
+凤凰中文,https://cdn6.163189.xyz/163189/fhzw
+凤凰中文,http://r.jdshipin.com/cCCzW
 凤凰中文,http://iptv.4666888.xyz/iptv2A.php?id=27
 凤凰中文,http://183.237.95.108:9901/tsfile/live/1103_1.m3u8?key=txiptv&playlive=0&authid=0
 凤凰中文,http://zmgd.zyrnet.com:8888/hls/110/index.m3u8
@@ -539,7 +542,7 @@ CH8综合Pdtv,http://rihou.cc:555/tv/[Pd]CH8综合
 凤凰香港,http://r.jdshipin.com/yDoTN
 凤凰香港,http://43.152.224.209/qctv.fengshows.cn/live/0701phk72.flv
 凤凰香港,http://122.152.202.33/s/81a8a44f/index.m3u8?id=fhhk
-凤凰电影,http://221.7.175.154:8445/tsfile/live/1022_1.m3u8?key=txiptv&playlive=1&authid=0
+凤凰电影,http://122.224.58.42:85/tsfile/live/1022_1.m3u8?key=txiptv&playlive=1&authid=0
 凤凰电影,http://hao6688.3322.org:30066/stream/channelid/1776639112?ticket=1702a2c002bcd734ff936cd6c06c359b489b63c4&profile=pass
 星空卫视,http://122.53.222.9:9981/stream/channelid/2084767267?profile=pass
 TVB星河,https://o11.163189.xyz/stream/live/tvbxh/
@@ -584,14 +587,12 @@ TVB1,https://iptv.xmtv.qzz.io/?id=25
 TVBJ1,http://iptv.4666888.xyz/iptv2A.php?id=26
 TVBJ1,https://iptv.xmtv.qzz.io/?id=26
 TVBJ1,https://6.cdn.loc.cc/163189.php?id=j1
-TVBJ2,http://fm1077.serv00.net/Smart.php?id=j2_twn
 TVB-奖门人,http://iptv.4666888.xyz/iptv2A.php?id=31
 TVB-奖门人,https://iptv.xmtv.qzz.io/?id=31
 TVB-金曲,http://iptv.4666888.xyz/iptv2A.php?id=57
 TVB-金曲,https://iptv.xmtv.qzz.io/?id=57
 MYTV黄金翡翠,http://iptv.4666888.xyz/iptv2A.php?id=32
 MYTV黄金翡翠,https://iptv.xmtv.qzz.io/?id=32
-Now新闻,http://www.kaniptv.cn/ua3.php?etoken=kftrFZtW8eL2DlmUveZBTs09wjTHimredguNVUIPjH1XdfYK1R7sBV2dyipwWY0ufa4eLV2PdJQxhztKTG70O1Bnu9cWlPlkEzfxdwzCBLqeCnU%2FThi9rNGUdotFAs33Uijvlk2PRowVFksKiDwG4P%2F0hEVER6odEcbe77I7gqf3h20iZhME5Knx%2BGv62sGjExDDTAnuE2zKW0fXRWpuqaey9cBeXCUWul2bXZk%2BcSn5NtecAfNU1A9Let3%2BOLkQ%2FzIQAjRHYT9gTp%2B9pS02FyJ0prPb%2F2qN2qwv617ZEZXA8NJgPRgNTERn2%2BKn3%2BRg%2FPYik4pI3wrll5yure99vA%3D%3D
 Astro欢喜,http://o11.163189.xyz/stream/live/hxt/
 AstroAOD,https://o11.163189.xyz/stream/live/aod/
 AstroAEC,https://o11.163189.xyz/stream/live/aec/
@@ -611,10 +612,16 @@ TENNIS,http://iptv.4666888.xyz/iptv2A.php?id=62
 TENNIS,https://iptv.xmtv.qzz.io/?id=62
 ROCK_Action,http://iptv.4666888.xyz/iptv2A.php?id=50
 ROCK_Action,https://iptv.xmtv.qzz.io/?id=50
+Now新闻,http://www.kaniptv.cn/ua3.php?etoken=kftrFZtW8eL2DlmUveZBTs09wjTHimredguNVUIPjH1XdfYK1R7sBV2dyipwWY0ufa4eLV2PdJQxhztKTG70O1Bnu9cWlPlkEzfxdwzCBLqeCnU%2FThi9rNGUdotFAs33Uijvlk2PRowVFksKiDwG4P%2F0hEVER6odEcbe77I7gqf3h20iZhME5Knx%2BGv62sGjExDDTAnuE2zKW0fXRWpuqaey9cBeXCUWul2bXZk%2BcSn5NtecAfNU1A9Let3%2BOLkQ%2FzIQAjRHYT9gTp%2B9pS02FyJ0prPb%2F2qN2qwv617ZEZXA8NJgPRgNTERn2%2BKn3%2BRg%2FPYik4pI3wrll5yure99vA%3D%3D
 美亚电影,http://iptv.4666888.xyz/iptv2A.php?id=30
 美亚电影,https://iptv.xmtv.qzz.io/?id=30
+美亚C+,http://ottproxy2.ist.ooo/livehls/MOB-U1-NO/03.m3u8
+寰宇新闻,http://rihou.cc:555/tv/寰宇新闻
+寰宇台湾,http://rihou.cc:555/tv/寰宇台湾
 邵氏电影,http://38.75.136.137:98/gslb/dsdqpub/lbssdy.m3u8?auth=testpub
 邵氏武俠,http://38.75.136.137:98/gslb/dsdqpub/lbsswx.m3u8?auth=testpub
+邵氏动作,http://38.75.136.137:98/gslb/dsdqpub/lbssdz.m3u8?auth=testpub
+邵氏喜剧,http://38.75.136.137:98/gslb/dsdqpub/lbssxj.m3u8?auth=testpub
 千禧经典,http://iptv.4666888.xyz/iptv2A.php?id=22
 千禧经典,https://iptv.xmtv.qzz.io/?id=22
 千禧经典,https://o11.163189.xyz/stream/live/tvbc/
@@ -711,13 +718,20 @@ TVBS亚洲,http://bt.sc1970.xyz:9099/38.64.72.148/hls/modn/list/4005/playlist.m3
 TVBS精采,http://iptv.4666888.xyz/iptv2A.php?id=47
 TVBS精采,https://iptv.xmtv.qzz.io/?id=47
 TVBS,http://208.87.201.148/livehttpplay?channel_id=20085
+唐NTD,https://ntd02.akamaized.net/HD-NY/tracks-v3a1/mono.m3u8
+新唐人,http://rihou.cc:555/tv/NTD
+凯撒饭店,http://211.72.174.95:8118/0.ts
 ViuTV,http://push.cdn1.hls123.de:8080/streams/iewbjlpp9v/index.m3u8
 VIUTV,https://flv-play.clouda.com/live/viu-KpPuan1QZZRGVviEIXnCPhHAPl5lcylGou268vf92HL4JzDULAFZMnej7IiYgC3P6FGEZdmefzRr0259YM76WYOz.flv
 VIUTV6,https://flv-play.clouda.com/live/viu6-D6pO0qnPgYtsKeTdGr82OSkWEl8zBX3XM1t9ch8UV6mBdTtdTak4E430rwZSou1PWPElll7qSdAUc6WQQb3M0gkb.flv
+TITV,https://hc9lby9bzw8zcar.wcetv.com/hls/titv.m3u8
 HBO,http://23.237.104.106:8080/USA_HBO/tracks-v1a1/mono.m3u8
 HBO,http://23.237.104.106:8080/USA_HBO/index.m3u8
 HBO,http://89.187.179.148:826/anto.j/c9yJDcXyPe/1265
 HBO,http://8.243.126.131:8000/play/a06j/index.m3u8
+HBO精选,http://23.237.104.106:8080/USA_HBO2/tracks-v1a1/mono.m3u8
+HBO喜剧,http://23.237.104.106:8080/USA_HBO_COMEDY/tracks-v1a1/mono.m3u8
+HBO王牌,http://23.237.104.106:8080/USA_HBO_ZONE/tracks-v1a1/mono.m3u8
 AXN电影,http://50.7.120.34:8080/AXN_BLACK/index.m3u8
 AXN电影,http://50.7.120.34:8080/AXN_BLACK/tracks-v1a1/mono.m3u8
 AXN(HK),http://8.243.126.131:8000/play/a05r/index.m3u8
