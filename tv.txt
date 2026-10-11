@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:10:11/01:27:58,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
+2026:10:12/01:25:20,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -110,9 +110,9 @@ CCTV-17,http://1.24.39.180:808/hls/61/index.m3u8
 河北卫视,http://222.223.41.27:8888/hls/16/index.m3u8
 宁夏卫视,http://192.151.150.154/live/nxws.m3u8
 青海卫视,http://192.151.150.154/live/qhws.m3u8
-新疆卫视,http://192.151.150.154/live/xjws.m3u8
+新疆卫视,http://218.84.12.186:8001/hls/main/playlist.m3u8?zxinjd;http://218.84.12.186:8001/hls/main/playlist.m3u8zxinjd
 新疆卫视,http://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL1.smil/chunklist_w744036192_b1000000.m3u8
-西藏卫视,http://112.27.5.218:9901/tsfile/live/0111_1.m3u8?key=txiptv&playlive=1&authid=0
+西藏卫视,http://192.151.150.154/live/xzws.m3u8
 延边卫视,https://srs.iyb983.cn:443/video/CYS/index.m3u8
 兵团卫视,http://192.151.150.154/live/btws.m3u8
 康巴卫视,http://111.48.34.138/000000001000PLTV/88888888/224/3221230555/1.m3u8
@@ -308,7 +308,7 @@ CETV4,http://107.150.60.122/live/cetv4.m3u8
 风云音乐,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000319
 怀旧剧场,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000318
 金色学堂,http://111.48.34.138/000000001000PLTV/88888888/224/3221230586/1.m3u8
-都市剧场,http://38.75.136.137:98/gslb/dsdqpub/dsjchd.m3u8?auth=testpub
+都市剧场,https://satellitepull.cnr.cn/live/wxcqxwgb/playlist.m3u8
 法治天地,http://111.48.34.138/000000001000PLTV/88888888/224/3221230609/1.m3u8
 金鹰纪实,http://111.48.34.138/000000001000PLTV/88888888/224/3221230420/1.m3u8
 生活时尚,http://111.48.34.138/000000001000PLTV/88888888/224/3221230617/1.m3u8
