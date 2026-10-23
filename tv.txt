@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:10:22/01:20:29,https://192168125.ddnsto.com:443/iptv_status_with_audio.mp4
+2026:10:23/01:21:15,https://XXXXXXXXX.ddnsto.com:443/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
