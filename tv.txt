@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:11:24/22:16:55,https://XXXXXXXXX.ddnsto.com:443/iptv_status_with_audio.mp4
+2026:11:24/22:34:59,https://XXXXXXXXX.ddnsto.com:443/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -86,26 +86,25 @@ CCTV-16,http://sphinger.f3322.net:11012/rtp/239.3.1.184:8001
 CCTV-17,http://sphinger.f3322.net:11012/rtp/239.3.1.151:8144
 
 
-CCTV-1综合,http://nas.sphinger.cn:11012/rtp/239.3.1.129:8008
-CCTV-2财经,http://nas.sphinger.cn:11012/rtp/239.3.1.60:8084
-CCTV-3综艺,http://nas.sphinger.cn:11012/rtp/239.3.1.172:8001
-CCTV-4中文国际,http://nas.sphinger.cn:11012/rtp/239.3.1.105:8092
-CCTV-5体育,http://nas.sphinger.cn:11012/rtp/239.3.1.173:8001
-CCTV-5+体育赛事,http://nas.sphinger.cn:11012/rtp/239.3.1.130:8004
-CCTV-6电影,http://nas.sphinger.cn:11012/rtp/239.3.1.174:8001
-CCTV-7国防军事,http://nas.sphinger.cn:11012/rtp/239.3.1.61:8104
-CCTV-8电视剧,http://nas.sphinger.cn:11012/rtp/239.3.1.175:8001
-CCTV-9纪录,http://nas.sphinger.cn:11012/rtp/239.3.1.62:8112
-CCTV-10科教,http://nas.sphinger.cn:11012/rtp/239.3.1.63:8116
-CCTV-11戏曲,http://nas.sphinger.cn:11012/rtp/239.3.1.152:8120
-CCTV-12社会与法,http://nas.sphinger.cn:11012/rtp/239.3.1.64:8124
-CCTV-13新闻,http://nas.sphinger.cn:11012/rtp/239.3.1.124:8128
-CCTV-14少儿,http://nas.sphinger.cn:11012/rtp/239.3.1.65:8132
-CCTV-15音乐,http://nas.sphinger.cn:11012/rtp/239.3.1.153:8136
-CCTV-16奥林匹克,http://nas.sphinger.cn:11012/rtp/239.3.1.183:8001
-CCTV-16奥林匹克,http://nas.sphinger.cn:11012/rtp/239.3.1.184:8001
-CCTV-17农业农村,http://nas.sphinger.cn:11012/rtp/239.3.1.151:8144
-
+CCTV-1,http://nas.sphinger.cn:11012/rtp/239.3.1.129:8008
+CCTV-2,http://nas.sphinger.cn:11012/rtp/239.3.1.60:8084
+CCTV-3,http://nas.sphinger.cn:11012/rtp/239.3.1.172:8001
+CCTV-4,http://nas.sphinger.cn:11012/rtp/239.3.1.105:8092
+CCTV-5,http://nas.sphinger.cn:11012/rtp/239.3.1.173:8001
+CCTV-5+,http://nas.sphinger.cn:11012/rtp/239.3.1.130:8004
+CCTV-6,http://nas.sphinger.cn:11012/rtp/239.3.1.174:8001
+CCTV-7,http://nas.sphinger.cn:11012/rtp/239.3.1.61:8104
+CCTV-8,http://nas.sphinger.cn:11012/rtp/239.3.1.175:8001
+CCTV-9,http://nas.sphinger.cn:11012/rtp/239.3.1.62:8112
+CCTV-10,http://nas.sphinger.cn:11012/rtp/239.3.1.63:8116
+CCTV-11,http://nas.sphinger.cn:11012/rtp/239.3.1.152:8120
+CCTV-12,http://nas.sphinger.cn:11012/rtp/239.3.1.64:8124
+CCTV-13,http://nas.sphinger.cn:11012/rtp/239.3.1.124:8128
+CCTV-14,http://nas.sphinger.cn:11012/rtp/239.3.1.65:8132
+CCTV-15,http://nas.sphinger.cn:11012/rtp/239.3.1.153:8136
+CCTV-16,http://nas.sphinger.cn:11012/rtp/239.3.1.183:8001
+CCTV-16,http://nas.sphinger.cn:11012/rtp/239.3.1.184:8001
+CCTV-17,http://nas.sphinger.cn:11012/rtp/239.3.1.151:8144
 
 
 卫视频道,#genre#
@@ -206,18 +205,6 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 青海卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.44:8184
 黑龙江卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.133:8016
 
-东方卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.119:3006
-北京卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.139:8001
-北京卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.22:8001
-四川卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.131:3001
-山东卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.144:3005
-广东卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.203:2000
-江苏卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.113:3003
-浙江卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.114:3004
-深圳卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.202:2000
-湖南卫视4K,http://sphinger.f3322.net:11012/rtp/239.3.1.112:3002
-深圳卫视4K,http://sphinger.f3322.net:11012/rtp/rtp/239.3.1.28:2000
-广东卫视4K,http://sphinger.f3322.net:11012/rtp/rtp/239.3.1.27:2000
 东南卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.156:8148
 东方卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.136:8032
 兵团卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.144:4120
