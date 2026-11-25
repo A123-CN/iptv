@@ -1,5 +1,5 @@
 更新信息,#genre#
-2026:11:24/22:34:59,https://XXXXXXXXX.ddnsto.com:443/iptv_status_with_audio.mp4
+2026:11:25/01:05:57,https://XXXXXXXXX.ddnsto.com:443/iptv_status_with_audio.mp4
 
 央视频道,#genre#
 CCTV-1,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000131
@@ -39,9 +39,6 @@ CCTV-12,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_CCTV-12-HQ/G_CCTV-12-H
 CCTV-13,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_CCTV-13-HQ/G_CCTV-13-HQ.m3u8?
 CCTV-14,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_CCTV-14-HQ/G_CCTV-14-HQ.m3u8?
 CCTV-15,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_CCTV-15-HQ/G_CCTV-15-HQ.m3u8?
-CCTV-16,http://yun.cnlvan.cn:18888/rtp/233.50.200.112:5140
-CCTV-16,http://www.slq888.cn:9999/rtp/233.50.200.112:5140
-CCTV-16,http://portainer.eversouthhangzhou.com.cn:8188/rtp/233.50.200.112:5140
 CCTV-17,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_CCTV-17-HQ/G_CCTV-17-HQ.m3u8?
 
 CCTV-1,http://lyayun.dedyn.io:61612/rtp/239.3.1.129:8008
@@ -60,7 +57,7 @@ CCTV-12,http://lyayun.dedyn.io:61612/rtp/239.3.1.64:8124
 CCTV-13,http://lyayun.dedyn.io:61612/rtp/239.3.1.124:8128
 CCTV-14,http://lyayun.dedyn.io:61612/rtp/239.3.1.65:8132
 CCTV-15,http://lyayun.dedyn.io:61612/rtp/239.3.1.153:8136
-CCTV-16,http://lyayun.dedyn.io:61612/rtp/239.3.1.183:8001
+CCTV-16,http://107.150.60.122/live/cctv16hd.m3u8
 CCTV-16,http://lyayun.dedyn.io:61612/rtp/239.3.1.184:8001
 CCTV-17,http://lyayun.dedyn.io:61612/rtp/239.3.1.151:8144
 
@@ -81,7 +78,6 @@ CCTV-12,http://sphinger.f3322.net:11012/rtp/239.3.1.64:8124
 CCTV-13,http://sphinger.f3322.net:11012/rtp/239.3.1.124:8128
 CCTV-14,http://sphinger.f3322.net:11012/rtp/239.3.1.65:8132
 CCTV-15,http://sphinger.f3322.net:11012/rtp/239.3.1.153:8136
-CCTV-16,http://sphinger.f3322.net:11012/rtp/239.3.1.183:8001
 CCTV-16,http://sphinger.f3322.net:11012/rtp/239.3.1.184:8001
 CCTV-17,http://sphinger.f3322.net:11012/rtp/239.3.1.151:8144
 
@@ -102,14 +98,12 @@ CCTV-12,http://nas.sphinger.cn:11012/rtp/239.3.1.64:8124
 CCTV-13,http://nas.sphinger.cn:11012/rtp/239.3.1.124:8128
 CCTV-14,http://nas.sphinger.cn:11012/rtp/239.3.1.65:8132
 CCTV-15,http://nas.sphinger.cn:11012/rtp/239.3.1.153:8136
-CCTV-16,http://nas.sphinger.cn:11012/rtp/239.3.1.183:8001
 CCTV-16,http://nas.sphinger.cn:11012/rtp/239.3.1.184:8001
 CCTV-17,http://nas.sphinger.cn:11012/rtp/239.3.1.151:8144
 
 
 卫视频道,#genre#
 湖北卫视,rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000194
-湖北卫视,rtsp://111.48.34.138:1554/170000004112/HBGD9934983436000788486629361083
 湖南卫视,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000174
 北京卫视,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000173
 江苏卫视,rtsp://111.48.34.138:1554/170000004112/00000001000000060000000000000177
@@ -175,13 +169,13 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 
 东南卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.156:8148
 东方卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.136:8032
-兵团卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.144:4120
+兵团卫视,http://183.222.15.202:4321/rtp/239.11.0.204:5140
 内蒙古卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.43:8176
 北京卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.241:8000
 吉林卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.240:8172
-四川卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.29:8288
+四川卫视,http://61.145.188.90:50055/udp/239.77.1.215:5146
 天津卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.141:1234
-宁夏卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.46:8124
+宁夏卫视,http://183.222.15.202:4321/rtp/239.11.0.57:5140
 安徽卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.211:8064
 山东卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.209:8052
 山西卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.42:8172
@@ -190,14 +184,14 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 江苏卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.135:8028
 江西卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.123:8164
 河北卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.148:8072
-河南卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.27:8128
+河南卫视,http://183.222.15.202:4321/rtp/239.11.0.44:5140
 浙江卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.137:8036
 海南卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.45:8304
 深圳卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.134:8020
 湖北卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.138:8044
 湖南卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.132:8012
-甘肃卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.49:8188
-西藏卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.47:8164
+甘肃卫视,http://183.222.15.202:4321/rtp/239.11.0.55:5140
+西藏卫视,http://183.222.15.202:4321/rtp/239.11.0.53:5140
 贵州卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.149:8076
 辽宁卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.210:8056
 重庆卫视,http://lyayun.dedyn.io:61612/rtp/239.3.1.122:8160
@@ -207,13 +201,11 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 
 东南卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.156:8148
 东方卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.136:8032
-兵团卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.144:4120
 内蒙古卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.43:8176
 北京卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.241:8000
 吉林卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.240:8172
 四川卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.29:8288
 天津卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.141:1234
-宁夏卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.46:8124
 安徽卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.211:8064
 山东卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.209:8052
 山西卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.42:8172
@@ -222,14 +214,11 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 江苏卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.135:8028
 江西卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.123:8164
 河北卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.148:8072
-河南卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.27:8128
 浙江卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.137:8036
 海南卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.45:8304
 深圳卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.134:8020
 湖北卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.138:8044
 湖南卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.132:8012
-甘肃卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.49:8188
-西藏卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.47:8164
 贵州卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.149:8076
 辽宁卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.210:8056
 重庆卫视,http://sphinger.f3322.net:11012/rtp/239.3.1.122:8160
@@ -239,13 +228,11 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 
 东南卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.156:8148
 东方卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.136:8032
-兵团卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.144:4120
 内蒙古卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.43:8176
 北京卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.241:8000
 吉林卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.240:8172
 四川卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.29:8288
 天津卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.141:1234
-宁夏卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.46:8124
 安徽卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.211:8064
 山东卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.209:8052
 山西卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.42:8172
@@ -254,14 +241,11 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 江苏卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.135:8028
 江西卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.123:8164
 河北卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.148:8072
-河南卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.27:8128
 浙江卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.137:8036
 海南卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.45:8304
 深圳卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.134:8020
 湖北卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.138:8044
 湖南卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.132:8012
-甘肃卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.49:8188
-西藏卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.47:8164
 贵州卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.149:8076
 辽宁卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.210:8056
 重庆卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.122:8160
@@ -269,21 +253,6 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 青海卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.44:8184
 黑龙江卫视,http://nas.sphinger.cn:11012/rtp/239.3.1.133:8016
 
-
-
-4K频道,#genre#
-东方卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.119:3006
-北京卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.139:8001
-北京卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.22:8001
-四川卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.131:3001
-山东卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.144:3005
-广东卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.203:2000
-江苏卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.113:3003
-浙江卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.114:3004
-深圳卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.202:2000
-湖南卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.112:3002
-深圳卫视4K,http://nas.sphinger.cn:11012/rtp/rtp/239.3.1.28:2000
-广东卫视4K,http://nas.sphinger.cn:11012/rtp/rtp/239.3.1.27:2000
 
 湖北频道,#genre#
 湖北经视,rtsp://111.48.34.138:1554/170000004112/10000100000000050000000002444588
@@ -349,6 +318,21 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 潜江综合,https://p2hs.vzan.com/slowlive/481008854192202056/live.m3u8
 神龙架综合频道,http://221.234.48.152:19888/hls/snjt/snjt_live.m3u8
 
+4K频道,#genre#
+东方卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.119:3006
+北京卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.139:8001
+北京卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.22:8001
+四川卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.131:3001
+山东卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.144:3005
+广东卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.203:2000
+江苏卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.113:3003
+浙江卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.114:3004
+深圳卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.202:2000
+湖南卫视4K,http://nas.sphinger.cn:11012/rtp/239.3.1.112:3002
+深圳卫视4K,http://nas.sphinger.cn:11012/rtp/rtp/239.3.1.28:2000
+广东卫视4K,http://nas.sphinger.cn:11012/rtp/rtp/239.3.1.27:2000
+
+
 影视频道,#genre#
 CHC家庭影院,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000522
 CHC家庭影院,http://38.75.136.137:98/gslb/dsdqpub/chcjt.m3u8?auth=testpub
@@ -369,20 +353,14 @@ CHC华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
 金鹰卡通,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000613
 动漫秀场,rtsp://111.48.34.138:1554/170000004112/HBGD9805143433502638082196954568
 哈哈炫动,http://111.48.34.138/000000001000PLTV/88888888/224/3221230578/1.m3u8
-嘉佳卡通,http://111.48.34.138/000000001000PLTV/88888888/224/3221230580/1.m3u8
+嘉佳卡通,http://183.222.15.202:4321/rtp/239.11.0.203:5140
 新动漫,http://111.48.34.138/000000001000PLTV/88888888/224/3221230487/1.m3u8
-卡酷少儿,http://111.48.34.138/000000001000PLTV/88888888/224/3221230428/1.m3u8
-金鹰卡通,http://111.48.34.138/000000001000PLTV/88888888/224/3221230468/1.m3u8
+卡酷少儿,http://183.222.15.202:4321/rtp/239.11.0.129:5140
+金鹰卡通,http://183.222.15.202:4321/rtp/239.11.0.127:5140
 动漫秀场,http://111.48.34.138/000000001000PLTV/88888888/224/3221230621/1.m3u8
-华数少儿动画,http://220.176.218.173:9000/rtp/239.252.220.136:5140
-华数少儿动画,http://114.254.36.246:8888/rtp/239.3.1.199:9000
-华数少儿动画,http://114.254.86.222:8888/rtp/239.3.1.199:9000
+华数少儿动画,http://111.193.227.77:23234/rtp/239.3.1.199:9000
 华数少儿动画,http://221.220.128.207:8012/rtp/239.3.1.199:9000
-华数少儿动画,http://219.156.95.119:4022/rtp/225.1.4.189:1238
-华数动画,http://220.176.218.173:9000/rtp/239.252.219.165:5140
-华数动画,http://114.254.36.246:8888/rtp/239.3.1.80:4120
-华数动画,http://114.254.86.222:8888/rtp/239.3.1.80:4120
-华数动画,http://221.220.128.207:8012/rtp/239.3.1.80:4120
+华数动画,http://111.193.227.77:23234/rtp/239.3.1.80:4120
 
 
 数字频道,#genre#
@@ -427,15 +405,15 @@ CETV4,http://107.150.60.122/live/cetv4.m3u8
 金色学堂,http://111.48.34.138/000000001000PLTV/88888888/224/3221230586/1.m3u8
 都市剧场,http://38.75.136.137:98/gslb/dsdqpub/dsjchd.m3u8?auth=testpub
 法治天地,http://111.48.34.138/000000001000PLTV/88888888/224/3221230609/1.m3u8
-金鹰纪实,http://111.48.34.138/000000001000PLTV/88888888/224/3221230420/1.m3u8
-生活时尚,http://111.48.34.138/000000001000PLTV/88888888/224/3221230617/1.m3u8
-东方财经,http://111.48.34.138/000000001000PLTV/88888888/224/3221230613/1.m3u8
+金鹰纪实,http://182.135.66.163:1888/rtp/239.94.2.223:5140
+生活时尚,http://182.135.66.163:1888/rtp/239.94.2.233:5140
+东方财经,http://182.135.66.163:1888/rtp/239.94.2.236:5140
 快乐垂钓,http://111.48.34.138/000000001000PLTV/88888888/224/3221230479/1.m3u8
 晴彩青少,http://111.48.34.138/000000001000PLTV/88888888/224/3221230584/1.m3u8
 晴彩篮球,http://111.48.34.138/000000001000PLTV/88888888/224/3221230336/1.m3u8
 晴彩竞技,http://111.48.34.138/000000001000PLTV/88888888/224/3221230371/1.m3u8
 晴彩广场舞,http://111.48.34.138/000000001000PLTV/88888888/224/3221230582/1.m3u8
-游戏风云,http://111.48.34.138/000000001000PLTV/88888888/224/3221230623/1.m3u8
+游戏风云,http://182.135.66.163:1888/rtp/239.94.2.235:5140
 风云足球,http://38.75.136.137:98/gslb/dsdqpub/fyzq.m3u8?auth=testpub
 高尔夫网球,http://38.75.136.137:98/gslb/dsdqpub/gefwq.m3u8?auth=testpub
 央视台球,http://38.75.136.137:98/gslb/dsdqpub/ystq.m3u8?auth=testpub
