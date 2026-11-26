@@ -423,13 +423,13 @@ CETV4,http://107.150.60.122/live/cetv4.m3u8
 第一剧场,http://198.204.228.26/live/dyjc.m3u8
 风云音乐,http://38.75.136.137:98/gslb/dsdqpub/fyyy.m3u8?auth=testpub
 怀旧剧场,http://38.75.136.137:98/gslb/dsdqpub/hjjc.m3u8?auth=testpub
-环球奇观,rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000282
-环球奇观,http://111.48.34.138/000000001000PLTV/88888888/224/3221230392/1.m3u8
-环球电视,http://utv1.hqtvzb.com:9999/hls/world.m3u8
 
 
 其他,#genre#
 唐NTD,https://ntd02.akamaized.net/HD-NY/tracks-v3a1/mono.m3u8
+环球奇观,rtsp://111.48.34.138:1554/170000004112/99180001000000060000000000000282
+环球奇观,http://111.48.34.138/000000001000PLTV/88888888/224/3221230392/1.m3u8
+环球电视,http://utv1.hqtvzb.com:9999/hls/world.m3u8
 碎片记,http://live.nctv.top/douyu1.php?id=9412981
 宇宙视界,http://live.nctv.top/douyu1.php?id=9498354
 宇宙探索飞船,http://live.nctv.top/douyu1.php?id=9456028
