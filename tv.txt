@@ -335,12 +335,12 @@ BRTV纪实科教,http://shangyan-livod-cdn.cmsrict.com/gitv_live/G_BEIJINGJS-HQ/
 
 影视频道,#genre#
 chc家庭影院,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000522
-chc家庭影院,http://38.75.136.137:98/gslb/dsdqpub/chcjt.m3u8?auth=testpub
-chc动作电影,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000523
-chc动作电影,http://38.75.136.137:98/gslb/dsdqpub/chcdz.m3u8?auth=testpub
-chc影迷电影,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000539
-chc影迷电影,http://38.75.136.137:98/gslb/dsdqpub/chchd.m3u8?auth=testpub
-chc华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
+CHC家庭影院,http://38.75.136.137:98/gslb/dsdqpub/CHCjt.m3u8?auth=testpub
+CHC动作电影,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000523
+CHC动作电影,http://38.75.136.137:98/gslb/dsdqpub/CHCdz.m3u8?auth=testpub
+CHC影迷电影,rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000539
+CHC影迷电影,http://38.75.136.137:98/gslb/dsdqpub/CHChd.m3u8?auth=testpub
+CHC华诚影视,http://120.76.248.139/live/bfgd/4200000289.m3u8
 重温经典,http://8.138.7.223/tv/cwjd.php
 重温经典,http://38.75.136.137:98/gslb/dsdqpub/cwjd.m3u8?auth=testpub
 重温经典,http://61.182.24.170:8080/live/xiangjiao-cwjd.m3u8
